@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr3dwe4uteypa"]
+
+[ext_resource type="Texture2D" uid="uid://8in8ebkqick3" path="res://Graphics/Backdrops/HauntedBG3ALT.png" id="1_ft4s0"]
+[ext_resource type="Texture2D" uid="uid://d1dtob1h03r3q" path="res://Graphics/Backdrops/HauntedBG4.png" id="2_7jq6j"]
+
+[node name="HauntedBackgroundAlt" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(-100, -175)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ft4s0")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 0.2)
+motion_offset = Vector2(0, 60)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(256, 0)
+texture = ExtResource("2_7jq6j")
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+texture = ExtResource("2_7jq6j")
+centered = false

@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmtdot003pckp"]
+
+[ext_resource type="Texture2D" uid="uid://bs4wr4bo0iiqq" path="res://Graphics/Items/Bone.png" id="1_lgqvu"]
+[ext_resource type="Script" uid="uid://bqywqpuvytc6n" path="res://Scripts/Collectables/bone_collectable.gd" id="1_xy4fc"]
+[ext_resource type="PackedScene" uid="uid://1b6s2lmhjbx0" path="res://Scenes/Entities/collectable.tscn" id="1_ynjhb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndj5y"]
+atlas = ExtResource("1_lgqvu")
+region = Rect2(1, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcwv6"]
+atlas = ExtResource("1_lgqvu")
+region = Rect2(14, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr500"]
+atlas = ExtResource("1_lgqvu")
+region = Rect2(27, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cf3t"]
+atlas = ExtResource("1_lgqvu")
+region = Rect2(40, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i12kc"]
+atlas = ExtResource("1_lgqvu")
+region = Rect2(53, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqble"]
+atlas = ExtResource("1_lgqvu")
+region = Rect2(66, 1, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1r6xc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndj5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcwv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr500")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cf3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i12kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqble")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i12kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cf3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr500")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcwv6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="BoneCollectable" instance=ExtResource("1_ynjhb")]
+script = ExtResource("1_xy4fc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_1r6xc")
+autoplay = "default"
+frame = 4
+frame_progress = 0.380102

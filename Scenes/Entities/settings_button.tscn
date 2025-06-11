@@ -1,0 +1,72 @@
+[gd_scene load_steps=14 format=3 uid="uid://d4h6toh47w7dr"]
+
+[ext_resource type="PackedScene" uid="uid://cnav2dtq5cp3y" path="res://Scenes/Entities/block.tscn" id="1_8cvk4"]
+[ext_resource type="Script" uid="uid://m0dr6uipjny3" path="res://Scripts/Other/settings_button.gd" id="2_cv25l"]
+[ext_resource type="Texture2D" uid="uid://buse1uda67wbv" path="res://Graphics/Interactables/SettingDownBlock.png" id="2_enfga"]
+[ext_resource type="PackedScene" uid="uid://b4ub2hpslq18u" path="res://Scenes/Components/hittable_component.tscn" id="3_1asy2"]
+[ext_resource type="Texture2D" uid="uid://d4f7aq5sgsvtt" path="res://Graphics/Interactables/SettingUpBlock.png" id="3_ynmco"]
+[ext_resource type="Texture2D" uid="uid://daaoh0ixsapu" path="res://Graphics/Interactables/FullscreenBlock.png" id="6_ty17h"]
+[ext_resource type="Texture2D" uid="uid://ej7cg0tn2s5q" path="res://Graphics/Interactables/WindowedBlock.png" id="7_xyog7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35esx"]
+size = Vector2(14, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81kfq"]
+atlas = ExtResource("2_enfga")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcjo7"]
+atlas = ExtResource("3_ynmco")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejf6u"]
+atlas = ExtResource("6_ty17h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1ahy"]
+atlas = ExtResource("7_xyog7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7256l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81kfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcjo7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejf6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1ahy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="SettingsButton" instance=ExtResource("1_8cvk4")]
+script = ExtResource("2_cv25l")
+
+[node name="HittableComponent" parent="." index="0" instance=ExtResource("3_1asy2")]
+
+[node name="Area2D" type="Area2D" parent="HittableComponent" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HittableComponent/Area2D" index="0"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_35esx")
+debug_color = Color(0.822839, 0.00168881, 0.960525, 0.42)
+
+[node name="BounceTimer" type="Timer" parent="HittableComponent" index="1"]
+wait_time = 0.23
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_7256l")
+autoplay = "default"
+
+[connection signal="body_entered" from="HittableComponent/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="HittableComponent/Area2D" to="HittableComponent" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="HittableComponent/BounceTimer" to="HittableComponent" method="_on_bounce_timer_timeout"]

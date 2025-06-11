@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://gah8s10hqfyy"]
+
+[ext_resource type="Script" uid="uid://c04dpwo4eiy05" path="res://Scripts/Enemies/orange_armor.gd" id="1_5333t"]
+[ext_resource type="Texture2D" uid="uid://cikbwwq2ldqbx" path="res://Graphics/Enemy/PoatoArmorEnemy.png" id="1_ehvod"]
+[ext_resource type="PackedScene" uid="uid://c06h7nmwxk8xn" path="res://Scenes/Components/walk_component.tscn" id="2_o5jcx"]
+[ext_resource type="PackedScene" uid="uid://7r71nhjr87r" path="res://Scenes/Components/on_jump_component.tscn" id="3_ys075"]
+[ext_resource type="PackedScene" uid="uid://bg8806v1rj0h7" path="res://Scenes/Components/on_ground_pound_component.tscn" id="5_81tav"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05n2f"]
+atlas = ExtResource("1_ehvod")
+region = Rect2(1, 1, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbend"]
+atlas = ExtResource("1_ehvod")
+region = Rect2(18, 1, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6epu0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05n2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbend")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prlrk"]
+size = Vector2(8, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2roj"]
+size = Vector2(8, 14)
+
+[node name="OrangeArmor" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_5333t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -0.5)
+sprite_frames = SubResource("SpriteFrames_6epu0")
+animation = &"Walk"
+autoplay = "Walk"
+frame = 1
+frame_progress = 0.0455245
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_prlrk")
+
+[node name="WalkComponent" parent="." instance=ExtResource("2_o5jcx")]
+walkspeed = 35.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(3.5, 2.6)
+
+[node name="OnJumpComponent" parent="." instance=ExtResource("3_ys075")]
+
+[node name="OnGroundPoundComponent" parent="." instance=ExtResource("5_81tav")]
+
+[node name="InteractionHitbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHitbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_h2roj")
+debug_color = Color(0.903132, 0.00014959, 0.754079, 0.42)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="jumped_on" from="OnJumpComponent" to="." method="_on_on_jump_component_jumped_on"]
+[connection signal="ground_pound_on" from="OnGroundPoundComponent" to="." method="_on_on_ground_pound_component_ground_pound_on"]
+[connection signal="body_entered" from="InteractionHitbox" to="." method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnJumpComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnGroundPoundComponent" method="_on_interaction_hitbox_body_entered"]

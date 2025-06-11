@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://shywq88akbdp"]
+
+[ext_resource type="Texture2D" uid="uid://c8m8pt3tt2aet" path="res://Graphics/Interactables/ApocalypseBossBarrel.png" id="1_ixjqr"]
+[ext_resource type="Script" uid="uid://bk4hrmnct3py7" path="res://Scripts/Other/rolling_barrel.gd" id="1_na78r"]
+[ext_resource type="PackedScene" uid="uid://c06h7nmwxk8xn" path="res://Scenes/Components/walk_component.tscn" id="2_na78r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiwpf"]
+atlas = ExtResource("1_ixjqr")
+region = Rect2(1, 1, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8py6s"]
+atlas = ExtResource("1_ixjqr")
+region = Rect2(26, 1, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe668"]
+atlas = ExtResource("1_ixjqr")
+region = Rect2(51, 1, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jto7u"]
+atlas = ExtResource("1_ixjqr")
+region = Rect2(76, 1, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yv2iy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aiwpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8py6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe668")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jto7u")
+}],
+"loop": true,
+"name": &"Roll",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_na78r"]
+size = Vector2(16, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aiwpf"]
+size = Vector2(16, 20)
+
+[node name="RollingBarrel" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 4
+floor_stop_on_slope = false
+floor_constant_speed = true
+script = ExtResource("1_na78r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yv2iy")
+animation = &"Roll"
+autoplay = "Roll"
+frame_progress = 0.875961
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_na78r")
+
+[node name="WalkComponent" parent="." instance=ExtResource("2_na78r")]
+walkspeed = 75.0
+
+[node name="InteractionHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHitbox"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_aiwpf")
+debug_color = Color(0.803228, 0.00245217, 0.999992, 0.42)
+
+[connection signal="body_entered" from="InteractionHitbox" to="." method="_on_interaction_hitbox_body_entered"]

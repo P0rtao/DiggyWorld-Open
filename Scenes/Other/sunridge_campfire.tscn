@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://hhny5xuvs7bt"]
+
+[ext_resource type="Texture2D" uid="uid://0npcl3d26d28" path="res://Graphics/Decorations/SunridgeCampfire.png" id="1_2spf3"]
+[ext_resource type="Texture2D" uid="uid://bukne0j086q61" path="res://Graphics/Particles/LightTexture.png" id="2_kq3mf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssi7q"]
+atlas = ExtResource("1_2spf3")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iob1h"]
+atlas = ExtResource("1_2spf3")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q82ug"]
+atlas = ExtResource("1_2spf3")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ki54h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssi7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iob1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q82ug")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="SunridgeCampfire" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ki54h")
+autoplay = "default"
+frame_progress = 0.56456
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.985083, 0.0495387, 9.62615e-07, 1)
+energy = 0.5
+texture = ExtResource("2_kq3mf")
+texture_scale = 2.0

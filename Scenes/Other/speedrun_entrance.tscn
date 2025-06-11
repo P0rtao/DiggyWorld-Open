@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://datha6a3a80d8"]
+
+[ext_resource type="Texture2D" uid="uid://2lo2m5hjury5" path="res://Graphics/Interactables/SpeedrunEntranceHouse.png" id="1_5pgll"]
+[ext_resource type="Script" uid="uid://bw5o8150hpdjr" path="res://Scripts/Other/speedrun_entrance.gd" id="1_6nt5l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nt5l"]
+size = Vector2(10, 24)
+
+[node name="SpeedrunEntrance" type="Area2D"]
+script = ExtResource("1_6nt5l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -19)
+texture = ExtResource("1_5pgll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6nt5l")
+debug_color = Color(0.752126, 0.196583, 1, 0.42)
+
+[node name="LoadTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://ck4ovu0d2vic2"]
+
+[ext_resource type="PackedScene" uid="uid://cnav2dtq5cp3y" path="res://Scenes/Entities/block.tscn" id="1_w3p1j"]
+[ext_resource type="Script" uid="uid://dldy2mdq5obd6" path="res://Scripts/Other/hittable_block.gd" id="2_1r0kv"]
+[ext_resource type="Texture2D" uid="uid://b3g04sfyh40ms" path="res://Graphics/Interactables/Crate.png" id="2_er8t8"]
+[ext_resource type="PackedScene" uid="uid://b4ub2hpslq18u" path="res://Scenes/Components/hittable_component.tscn" id="3_7nuds"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4x52"]
+atlas = ExtResource("2_er8t8")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lepwd"]
+atlas = ExtResource("2_er8t8")
+region = Rect2(1, 18, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6c0db"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4x52")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lepwd")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o763w"]
+size = Vector2(14, 1)
+
+[node name="CrateBlock" instance=ExtResource("1_w3p1j")]
+script = ExtResource("2_1r0kv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_6c0db")
+autoplay = "default"
+
+[node name="HittableComponent" parent="." index="2" instance=ExtResource("3_7nuds")]
+
+[node name="Area2D" type="Area2D" parent="HittableComponent" index="0"]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HittableComponent/Area2D" index="0"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_o763w")
+debug_color = Color(0.813539, 0.00203189, 0.979641, 0.42)
+
+[node name="BounceTimer" type="Timer" parent="HittableComponent" index="1"]
+wait_time = 0.23
+one_shot = true
+
+[connection signal="body_entered" from="HittableComponent/Area2D" to="HittableComponent" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="HittableComponent/BounceTimer" to="HittableComponent" method="_on_bounce_timer_timeout"]

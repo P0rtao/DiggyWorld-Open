@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dl83110yshulp"]
+
+[ext_resource type="Texture2D" uid="uid://dgt8foadietq2" path="res://Graphics/Particles/HelmetSpin.png" id="1_wlqfm"]
+[ext_resource type="Script" uid="uid://bjls1w138r2g7" path="res://Scripts/Other/helmet.gd" id="2_on7ge"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_872n3"]
+atlas = ExtResource("1_wlqfm")
+region = Rect2(1, 1, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1sa1"]
+atlas = ExtResource("1_wlqfm")
+region = Rect2(17, 1, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ry4x"]
+atlas = ExtResource("1_wlqfm")
+region = Rect2(33, 1, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kq55"]
+atlas = ExtResource("1_wlqfm")
+region = Rect2(49, 1, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anr7y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_872n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1sa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ry4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kq55")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Helmet" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_anr7y")
+autoplay = "default"
+frame_progress = 0.956626
+script = ExtResource("2_on7ge")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

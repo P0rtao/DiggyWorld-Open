@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt7rsndcj4ya5"]
+
+[ext_resource type="Texture2D" uid="uid://0w7r8h8ak1jf" path="res://Graphics/Particles/SunridgeCubeParticle.png" id="1_5ar7b"]
+[ext_resource type="Script" uid="uid://7om3lr5rpn22" path="res://Scripts/Other/cube_particle.gd" id="2_2lwo2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mievi"]
+atlas = ExtResource("1_5ar7b")
+region = Rect2(52, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wet10"]
+atlas = ExtResource("1_5ar7b")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysu4k"]
+atlas = ExtResource("1_5ar7b")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xcq7"]
+atlas = ExtResource("1_5ar7b")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfj6e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mievi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wet10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysu4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xcq7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="CubeParticle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_xfj6e")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_2lwo2")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

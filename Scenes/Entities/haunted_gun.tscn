@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhd5mpfh84abq"]
+
+[ext_resource type="PackedScene" uid="uid://tktxqdly08iw" path="res://Scenes/Entities/carryable_object.tscn" id="1_vihjv"]
+[ext_resource type="Texture2D" uid="uid://bixocltby0rr7" path="res://Graphics/Interactables/HauntedGun.png" id="2_f8a6k"]
+[ext_resource type="Script" uid="uid://bs0e3dky5t5yk" path="res://Scripts/Other/haunted_gun_handler.gd" id="3_f8a6k"]
+
+[node name="HauntedGun" instance=ExtResource("1_vihjv")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_f8a6k")
+
+[node name="HauntedGunHandler" type="Node2D" parent="." index="4"]
+script = ExtResource("3_f8a6k")
+
+[node name="ShootTimer" type="Timer" parent="HauntedGunHandler" index="0"]
+
+[connection signal="timeout" from="HauntedGunHandler/ShootTimer" to="HauntedGunHandler" method="_on_shoot_timer_timeout"]

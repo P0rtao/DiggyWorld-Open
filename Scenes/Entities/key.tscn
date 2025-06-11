@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvdns1nxax83b"]
+
+[ext_resource type="PackedScene" uid="uid://tktxqdly08iw" path="res://Scenes/Entities/carryable_object.tscn" id="1_3lrrv"]
+[ext_resource type="Texture2D" uid="uid://yqdit153uyf6" path="res://Graphics/Items/Key.png" id="2_fbogo"]
+
+[node name="Key" groups=["Key"] instance=ExtResource("1_3lrrv")]
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_fbogo")

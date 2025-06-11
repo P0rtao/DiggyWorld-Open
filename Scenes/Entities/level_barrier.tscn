@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg3y8766j6r68"]
+
+[ext_resource type="PackedScene" uid="uid://cnav2dtq5cp3y" path="res://Scenes/Entities/block.tscn" id="1_0acfd"]
+
+[node name="LevelBarrier" groups=["Barrier"] instance=ExtResource("1_0acfd")]
+collision_layer = 142
+collision_mask = 142

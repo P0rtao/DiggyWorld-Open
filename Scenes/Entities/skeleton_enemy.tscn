@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://bm7rrbuv54iki"]
+
+[ext_resource type="Script" uid="uid://dkyhw1ynvwc5f" path="res://Scripts/Enemies/skeleton_enemy.gd" id="1_6bn65"]
+[ext_resource type="Texture2D" uid="uid://dmxkra6i38lf2" path="res://Graphics/Enemy/Skeleton.png" id="1_6m7lx"]
+[ext_resource type="PackedScene" uid="uid://7r71nhjr87r" path="res://Scenes/Components/on_jump_component.tscn" id="1_d4uoi"]
+[ext_resource type="PackedScene" uid="uid://c06h7nmwxk8xn" path="res://Scenes/Components/walk_component.tscn" id="2_wwwir"]
+[ext_resource type="PackedScene" uid="uid://tqdiimcw3hta" path="res://Scenes/Components/sword_component.tscn" id="5_jv4d5"]
+[ext_resource type="PackedScene" uid="uid://bg8806v1rj0h7" path="res://Scenes/Components/on_ground_pound_component.tscn" id="6_a277l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22fbf"]
+atlas = ExtResource("1_6m7lx")
+region = Rect2(1, 26, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvi1s"]
+atlas = ExtResource("1_6m7lx")
+region = Rect2(30, 26, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlxt1"]
+atlas = ExtResource("1_6m7lx")
+region = Rect2(59, 26, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byllp"]
+atlas = ExtResource("1_6m7lx")
+region = Rect2(1, 1, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gcqa"]
+atlas = ExtResource("1_6m7lx")
+region = Rect2(18, 1, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mvpcn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22fbf")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_qvi1s")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_nlxt1")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byllp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gcqa")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rk80"]
+size = Vector2(8, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kc4ld"]
+size = Vector2(8, 17)
+
+[node name="SkeletonEnemy" type="CharacterBody2D" groups=["Enemy"]]
+z_index = -1
+collision_layer = 2
+collision_mask = 4
+floor_stop_on_slope = false
+script = ExtResource("1_6bn65")
+
+[node name="OnJumpComponent" parent="." instance=ExtResource("1_d4uoi")]
+
+[node name="WalkComponent" parent="." instance=ExtResource("2_wwwir")]
+walkspeed = 5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mvpcn")
+animation = &"Attack"
+autoplay = "Walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_3rk80")
+
+[node name="InteractionHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHitbox"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_kc4ld")
+debug_color = Color(0.76581, 0.16709, 1, 0.42)
+
+[node name="SwordComponent" parent="." instance=ExtResource("5_jv4d5")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(3.9, 3)
+
+[node name="OnGroundPoundComponent" parent="." instance=ExtResource("6_a277l")]
+
+[connection signal="jumped_on" from="OnJumpComponent" to="." method="_on_on_jump_component_jumped_on"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnJumpComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnGroundPoundComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="ground_pound_on" from="OnGroundPoundComponent" to="." method="_on_on_ground_pound_component_ground_pound_on"]

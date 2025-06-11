@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg8806v1rj0h7"]
+
+[ext_resource type="Script" uid="uid://bna4gdot2cdpp" path="res://Scripts/Enemies/on_ground_pound_component.gd" id="1_go0jy"]
+
+[node name="OnGroundPoundComponent" type="Node"]
+script = ExtResource("1_go0jy")

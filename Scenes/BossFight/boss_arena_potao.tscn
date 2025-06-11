@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://3652xfox16ym"]
+
+[ext_resource type="Script" uid="uid://c5gmeg1a348bl" path="res://Scripts/BossHandlers/boss_potao_handler.gd" id="1_3ec82"]
+[ext_resource type="Script" uid="uid://c4t5s6do7lawa" path="res://Scripts/ScriptedSequences/boss_switch.gd" id="1_7ia1j"]
+[ext_resource type="Script" uid="uid://8qufyk43ia7r" path="res://Scripts/ScriptedSequences/kill_plane.gd" id="3_ej60f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwgxg"]
+size = Vector2(29, 244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61tsn"]
+size = Vector2(20, 278)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d28dq"]
+size = Vector2(20, 532)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pdtc3"]
+distance = -148.0
+
+[node name="BossArena" type="Node2D"]
+script = ExtResource("1_3ec82")
+
+[node name="StartTrigger" type="Area2D" parent="."]
+script = ExtResource("1_7ia1j")
+cam_position = Vector2(1350, -141)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartTrigger"]
+position = Vector2(1185.5, -186)
+shape = SubResource("RectangleShape2D_gwgxg")
+
+[node name="LimitLeft" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitLeft"]
+position = Vector2(1160, -203)
+shape = SubResource("RectangleShape2D_61tsn")
+disabled = true
+
+[node name="LimitRight" type="StaticBody2D" parent="."]
+position = Vector2(11, 0)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitRight"]
+position = Vector2(1503, -74)
+shape = SubResource("RectangleShape2D_d28dq")
+disabled = true
+
+[node name="BossStartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="BottomLimit" type="Area2D" parent="."]
+collision_mask = 15
+script = ExtResource("3_ej60f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomLimit"]
+shape = SubResource("WorldBoundaryShape2D_pdtc3")
+disabled = true
+
+[node name="BossEndTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="StartTrigger" to="StartTrigger" method="_on_body_entered"]
+[connection signal="start_boss" from="StartTrigger" to="." method="_on_start_trigger_start_boss"]
+[connection signal="timeout" from="BossStartTimer" to="." method="_on_boss_start_timer_timeout"]
+[connection signal="body_entered" from="BottomLimit" to="." method="_on_bottom_limit_body_entered"]
+[connection signal="body_entered" from="BottomLimit" to="BottomLimit" method="_on_body_entered"]
+[connection signal="timeout" from="BossEndTimer" to="." method="_on_boss_end_timer_timeout"]

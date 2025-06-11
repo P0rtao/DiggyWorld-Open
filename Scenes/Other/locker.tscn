@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfdwxqqqkuonp"]
+
+[ext_resource type="Texture2D" uid="uid://b3h1qup5cmye5" path="res://Graphics/Decorations/Locker.png" id="1_5jl28"]
+
+[node name="Locker" type="Sprite2D"]
+z_index = -3
+position = Vector2(0, -0.5)
+texture = ExtResource("1_5jl28")

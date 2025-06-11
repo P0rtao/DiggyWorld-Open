@@ -1,0 +1,20 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dihirlsvu5u0c"]
+
+[ext_resource type="Texture2D" uid="uid://bmwko1xswiwog" path="res://Graphics/Tileset/Water.png" id="1_iphq1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5p1d2"]
+texture = ExtResource("1_iphq1")
+margins = Vector2i(1, 1)
+separation = Vector2i(1, 1)
+0:0/animation_columns = 2
+0:0/animation_frame_0/duration = 0.5
+0:0/animation_frame_1/duration = 0.5
+0:0/0 = 0
+0:0/0/custom_data_0 = "Surface"
+0:1/0 = 0
+0:1/0/custom_data_0 = "Body"
+
+[resource]
+custom_data_layer_0/name = "Water"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_5p1d2")

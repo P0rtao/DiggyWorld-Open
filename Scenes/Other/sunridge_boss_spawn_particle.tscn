@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dykcxuesp7kx5"]
+
+[ext_resource type="Texture2D" uid="uid://c4c3kvaytiyw6" path="res://Graphics/Particles/SunridgeBossSpawn.png" id="1_h8r8l"]
+[ext_resource type="Script" uid="uid://cr2sopkfhf58b" path="res://Scripts/Other/sunridge_boss_spawn_particle.gd" id="2_2sgrq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cm7v"]
+atlas = ExtResource("1_h8r8l")
+region = Rect2(1, 1, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs0au"]
+atlas = ExtResource("1_h8r8l")
+region = Rect2(34, 1, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovj72"]
+atlas = ExtResource("1_h8r8l")
+region = Rect2(67, 1, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cbiqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cm7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs0au")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovj72")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="SunridgeBossSpawn" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_cbiqr")
+autoplay = "default"
+script = ExtResource("2_2sgrq")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

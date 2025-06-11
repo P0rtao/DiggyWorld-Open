@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfjvlqcucjbfk"]
+
+[ext_resource type="Texture2D" uid="uid://di30kxpa7ot0s" path="res://Graphics/Particles/HauntedBullet.png" id="1_4eajs"]
+[ext_resource type="Script" uid="uid://d17x6oox7l65m" path="res://Scripts/Other/haunted_bullet.gd" id="1_hcdhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcdhq"]
+size = Vector2(4, 2)
+
+[node name="HauntedBullet" type="Area2D" groups=["Bullet"]]
+script = ExtResource("1_hcdhq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4eajs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hcdhq")
+debug_color = Color(0.751071, 0.198637, 1, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.2, 0.1)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

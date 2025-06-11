@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfr8oqkopdv5f"]
+
+[ext_resource type="Texture2D" uid="uid://bnf3s84gjtn4v" path="res://Graphics/Interactables/KeyDoor.png" id="1_s86sr"]
+[ext_resource type="Script" uid="uid://b6lj84wi13umn" path="res://Scripts/Other/lock_particle.gd" id="2_nvumx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xexei"]
+atlas = ExtResource("1_s86sr")
+region = Rect2(0, 49, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j28iv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xexei")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LockParticle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_j28iv")
+autoplay = "default"
+script = ExtResource("2_nvumx")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(2.9, 2.8)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

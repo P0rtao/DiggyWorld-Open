@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4ohyy5hobrfb"]
+
+[ext_resource type="PackedScene" uid="uid://cnav2dtq5cp3y" path="res://Scenes/Entities/block.tscn" id="1_telcs"]
+[ext_resource type="Script" uid="uid://ex6f1wkuir7h" path="res://Scripts/Other/switch_block.gd" id="2_1yp1w"]
+[ext_resource type="Texture2D" uid="uid://cabspjgg0vyrf" path="res://Graphics/Interactables/SwitchBlocks.png" id="2_nb6kb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58gaq"]
+atlas = ExtResource("2_nb6kb")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujaod"]
+atlas = ExtResource("2_nb6kb")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_laaya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58gaq")
+}],
+"loop": true,
+"name": &"OFF",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujaod")
+}],
+"loop": true,
+"name": &"ON",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5ohx"]
+size = Vector2(14, 1)
+
+[node name="SwitchBlock" groups=["BlockON"] instance=ExtResource("1_telcs")]
+collision_layer = 31
+collision_mask = 31
+script = ExtResource("2_1yp1w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_laaya")
+animation = &"ON"
+autoplay = "ON"
+
+[node name="Area2D" type="Area2D" parent="." index="2"]
+collision_layer = 31
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_o5ohx")
+debug_color = Color(0.726034, 0.241041, 1, 0.42)
+
+[node name="BounceTimer" type="Timer" parent="." index="3"]
+wait_time = 0.23
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="BounceTimer" to="." method="_on_bounce_timer_timeout"]

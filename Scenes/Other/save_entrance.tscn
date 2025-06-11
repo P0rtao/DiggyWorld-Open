@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx2t5bpjonjny"]
+
+[ext_resource type="Texture2D" uid="uid://c32omrejwvrjf" path="res://Graphics/Interactables/SaveEntranceHouse.png" id="1_62phe"]
+[ext_resource type="Script" uid="uid://c24dy77c7nuv3" path="res://Scripts/Other/save_entrance.gd" id="1_ev6h1"]
+[ext_resource type="PackedScene" uid="uid://6n071h8v5bp2" path="res://Scenes/UI/number_display.tscn" id="3_7t8y8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hjpp"]
+size = Vector2(10, 24)
+
+[node name="SaveEntrance" type="Area2D"]
+script = ExtResource("1_ev6h1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -19)
+texture = ExtResource("1_62phe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0hjpp")
+debug_color = Color(0.752126, 0.196583, 1, 0.42)
+
+[node name="LoadSaveTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="NumberDisplay" parent="." instance=ExtResource("3_7t8y8")]
+position = Vector2(-4, -19)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="LoadSaveTimer" to="." method="_on_load_save_timer_timeout"]

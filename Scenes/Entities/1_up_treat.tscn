@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://bft8akwx4up64"]
+
+[ext_resource type="PackedScene" uid="uid://1b6s2lmhjbx0" path="res://Scenes/Entities/collectable.tscn" id="1_xhbbl"]
+[ext_resource type="Script" uid="uid://bp77yp7580kjq" path="res://Scripts/Collectables/1_up_treat.gd" id="2_60cif"]
+[ext_resource type="Texture2D" uid="uid://ck1fqulfmd25g" path="res://Graphics/Items/1upTreat.png" id="3_owmi0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apslt"]
+atlas = ExtResource("3_owmi0")
+region = Rect2(1, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4ris"]
+atlas = ExtResource("3_owmi0")
+region = Rect2(14, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20ba3"]
+atlas = ExtResource("3_owmi0")
+region = Rect2(27, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7k8i"]
+atlas = ExtResource("3_owmi0")
+region = Rect2(40, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to2vr"]
+atlas = ExtResource("3_owmi0")
+region = Rect2(53, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y575"]
+atlas = ExtResource("3_owmi0")
+region = Rect2(66, 1, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_77csi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apslt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4ris")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20ba3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7k8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to2vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y575")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to2vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7k8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20ba3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4ris")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="1upTreat" instance=ExtResource("1_xhbbl")]
+script = ExtResource("2_60cif")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_77csi")
+autoplay = "default"
+frame = 4
+frame_progress = 0.788015

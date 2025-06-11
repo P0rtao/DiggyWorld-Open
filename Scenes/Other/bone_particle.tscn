@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://5fqjul7670kp"]
+
+[ext_resource type="Texture2D" uid="uid://bfyj7tvnv0vi0" path="res://Graphics/Particles/BoneParticle.png" id="1_oowdr"]
+[ext_resource type="Script" uid="uid://bh70g1mqrv5ik" path="res://Scripts/Other/bone_particle.gd" id="2_q45mo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cuse"]
+atlas = ExtResource("1_oowdr")
+region = Rect2(1, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2fxc"]
+atlas = ExtResource("1_oowdr")
+region = Rect2(14, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teb7b"]
+atlas = ExtResource("1_oowdr")
+region = Rect2(27, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j807"]
+atlas = ExtResource("1_oowdr")
+region = Rect2(40, 1, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oovdh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cuse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2fxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teb7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j807")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="BoneParticle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_oovdh")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_q45mo")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

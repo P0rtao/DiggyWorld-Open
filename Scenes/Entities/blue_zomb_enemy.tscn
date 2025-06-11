@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://by1iacig7w705"]
+
+[ext_resource type="PackedScene" uid="uid://7r71nhjr87r" path="res://Scenes/Components/on_jump_component.tscn" id="1_1h6o6"]
+[ext_resource type="Script" uid="uid://cvp3k34gdnxea" path="res://Scripts/Enemies/blue_zomb_enemy.gd" id="1_2km1e"]
+[ext_resource type="Texture2D" uid="uid://drhbucbhks88p" path="res://Graphics/Enemy/BlueZomb.png" id="1_mv6fm"]
+[ext_resource type="PackedScene" uid="uid://dirwp38w8mv8g" path="res://Scenes/Components/run_component.tscn" id="2_rpv04"]
+[ext_resource type="PackedScene" uid="uid://bg8806v1rj0h7" path="res://Scenes/Components/on_ground_pound_component.tscn" id="5_ewqns"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am6sf"]
+atlas = ExtResource("1_mv6fm")
+region = Rect2(1, 26, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywexe"]
+atlas = ExtResource("1_mv6fm")
+region = Rect2(1, 1, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxua3"]
+atlas = ExtResource("1_mv6fm")
+region = Rect2(18, 1, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lyvda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am6sf")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywexe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxua3")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gseft"]
+size = Vector2(6, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0i8nk"]
+size = Vector2(6, 14)
+
+[node name="BlueZombEnemy" type="CharacterBody2D" groups=["Enemy"]]
+z_index = -1
+collision_layer = 2
+collision_mask = 4
+floor_snap_length = 8.0
+script = ExtResource("1_2km1e")
+
+[node name="RunComponent" parent="." instance=ExtResource("2_rpv04")]
+walkspeed = 125.0
+
+[node name="OnJumpComponent" parent="." instance=ExtResource("1_1h6o6")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lyvda")
+animation = &"Run"
+autoplay = "Run"
+frame = 1
+frame_progress = 0.337071
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_gseft")
+
+[node name="InteractionHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHitbox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_0i8nk")
+debug_color = Color(0.698524, 0.277996, 1, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(3.2, 2.2)
+
+[node name="OnGroundPoundComponent" parent="." instance=ExtResource("5_ewqns")]
+
+[connection signal="jumped_on" from="OnJumpComponent" to="." method="_on_on_jump_component_jumped_on"]
+[connection signal="body_entered" from="InteractionHitbox" to="." method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnJumpComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnGroundPoundComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="ground_pound_on" from="OnGroundPoundComponent" to="." method="_on_on_ground_pound_component_ground_pound_on"]

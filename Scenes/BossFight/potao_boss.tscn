@@ -1,0 +1,177 @@
+[gd_scene load_steps=17 format=3 uid="uid://dip7qs7idjuo6"]
+
+[ext_resource type="Script" uid="uid://cmthujnuk8u3k" path="res://Scripts/Enemies/potao_boss.gd" id="1_7pl0k"]
+[ext_resource type="Texture2D" uid="uid://bogirc8mivuqp" path="res://Graphics/Enemy/PoatoBoss.png" id="1_gggx7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k334m"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(1, 67, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6d10"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(67, 34, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plqs4"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(67, 1, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km7c7"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(100, 34, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ymv5"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(100, 1, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctbxo"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(133, 34, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1oyt6"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(1, 34, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hx0c"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(34, 34, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64ygu"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(1, 1, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oycvv"]
+atlas = ExtResource("1_gggx7")
+region = Rect2(34, 1, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_plns0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k334m")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6d10")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plqs4")
+}],
+"loop": true,
+"name": &"FallArmored",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km7c7")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ymv5")
+}],
+"loop": true,
+"name": &"JumpArmored",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctbxo")
+}],
+"loop": true,
+"name": &"Stunned",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1oyt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hx0c")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64ygu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oycvv")
+}],
+"loop": true,
+"name": &"WalkArmored",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_362ss"]
+size = Vector2(17, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6da4p"]
+size = Vector2(17, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8nfb"]
+size = Vector2(17, 15)
+
+[node name="PotaoBoss" type="CharacterBody2D" groups=["Boss"]]
+z_index = 1
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_7pl0k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_plns0")
+animation = &"WalkArmored"
+autoplay = "WalkArmored"
+frame_progress = 0.680056
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_362ss")
+one_way_collision = true
+
+[node name="InteractionHitbox" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHitbox"]
+position = Vector2(-0.5, 10)
+shape = SubResource("RectangleShape2D_6da4p")
+debug_color = Color(0.717315, 0.253618, 1, 0.42)
+
+[node name="JumpHitbox" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpHitbox"]
+position = Vector2(-0.5, -3.5)
+shape = SubResource("RectangleShape2D_x8nfb")
+debug_color = Color(1, 0, 0.0911618, 0.42)
+
+[node name="TurnAroundTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="StunTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="InteractionHitbox" to="." method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="JumpHitbox" to="." method="_on_jump_hitbox_body_entered"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

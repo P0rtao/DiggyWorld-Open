@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://tktxqdly08iw"]
+
+[ext_resource type="Script" uid="uid://chbgq433ue8x8" path="res://Scripts/Other/carryable_object.gd" id="1_2lfto"]
+[ext_resource type="PackedScene" uid="uid://c06h7nmwxk8xn" path="res://Scenes/Components/walk_component.tscn" id="2_hcsq1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85bdg"]
+size = Vector2(10, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0fuy"]
+size = Vector2(4, 4)
+
+[node name="CarryableObject" type="CharacterBody2D" groups=["Carryable"]]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_2lfto")
+
+[node name="WalkComponent" parent="." instance=ExtResource("2_hcsq1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_85bdg")
+
+[node name="InteractionHitbox" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHitbox"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_t0fuy")
+debug_color = Color(0.706852, 0.267605, 1, 0.42)
+
+[connection signal="body_entered" from="InteractionHitbox" to="." method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_exited" from="InteractionHitbox" to="." method="_on_interaction_hitbox_body_exited"]

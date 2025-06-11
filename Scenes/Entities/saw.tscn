@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5ifxrfdrkomn"]
+
+[ext_resource type="Script" uid="uid://dstpiit5esuay" path="res://Scripts/Other/swinging_axe.gd" id="1_dm1st"]
+[ext_resource type="Texture2D" uid="uid://dlpm6urtw0ykt" path="res://Graphics/Interactables/SawTrap.png" id="1_wagyw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm1st"]
+atlas = ExtResource("1_wagyw")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmi8l"]
+atlas = ExtResource("1_wagyw")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uui8d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm1st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmi8l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbdce"]
+size = Vector2(10, 10)
+
+[node name="Saw" type="Node2D"]
+script = ExtResource("1_dm1st")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uui8d")
+autoplay = "default"
+frame_progress = 0.527696
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_jbdce")
+debug_color = Color(0.681164, 0.297886, 1, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7u10uhaug0rp"]
+
+[ext_resource type="Texture2D" uid="uid://blclhm5k2pap2" path="res://Graphics/UI/MasterSettingLabel.png" id="1_ig00v"]
+[ext_resource type="Texture2D" uid="uid://bhlab332qs6so" path="res://Graphics/UI/MusicSettingLabel.png" id="2_a06pg"]
+[ext_resource type="Texture2D" uid="uid://ct4h8qndpscht" path="res://Graphics/UI/SoundSettingLabel.png" id="3_kw8wl"]
+[ext_resource type="Script" uid="uid://ccye60cdaa7et" path="res://Scripts/Other/sound_setting_label.gd" id="4_2vths"]
+[ext_resource type="PackedScene" uid="uid://6n071h8v5bp2" path="res://Scenes/UI/number_display.tscn" id="5_awxl7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pi6g"]
+atlas = ExtResource("1_ig00v")
+region = Rect2(0, 0, 53, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffbwk"]
+atlas = ExtResource("2_a06pg")
+region = Rect2(0, 0, 44, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt3qq"]
+atlas = ExtResource("3_kw8wl")
+region = Rect2(0, 0, 26, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lni5h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pi6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffbwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt3qq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="SoundSettingLabel" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_lni5h")
+autoplay = "default"
+script = ExtResource("4_2vths")
+
+[node name="NumberDisplay" parent="." instance=ExtResource("5_awxl7")]
+position = Vector2(0, 10)
+display_num = 3

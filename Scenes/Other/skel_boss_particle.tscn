@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8jfe046a05yf"]
+
+[ext_resource type="Script" uid="uid://be4sfn5yk80g8" path="res://Scripts/Other/bones_particle.gd" id="1_ayrym"]
+[ext_resource type="Texture2D" uid="uid://bdsetmb5yiixw" path="res://Graphics/Enemy/SkeletonBoss.png" id="2_ldss0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glfsb"]
+atlas = ExtResource("2_ldss0")
+region = Rect2(76, 141, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5dd5q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glfsb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SkelBossParticle" type="Node2D"]
+z_index = 1
+script = ExtResource("1_ayrym")
+
+[node name="Sprite1" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_5dd5q")
+autoplay = "default"
+flip_h = true
+
+[node name="Sprite2" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_5dd5q")
+autoplay = "default"
+
+[node name="Sprite3" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5dd5q")
+autoplay = "default"
+flip_h = true
+
+[node name="Sprite4" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5dd5q")
+autoplay = "default"
+
+[node name="ParticleTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="ParticleTime" to="." method="_on_particle_time_timeout"]

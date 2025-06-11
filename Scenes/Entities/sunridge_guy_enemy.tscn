@@ -1,0 +1,146 @@
+[gd_scene load_steps=18 format=3 uid="uid://8utd3qmneaxy"]
+
+[ext_resource type="PackedScene" uid="uid://tqdiimcw3hta" path="res://Scenes/Components/sword_component.tscn" id="1_57hx4"]
+[ext_resource type="Script" uid="uid://l3jbuofkt83m" path="res://Scripts/Enemies/sunridge_guy_enemy.gd" id="1_fnyyn"]
+[ext_resource type="PackedScene" uid="uid://7r71nhjr87r" path="res://Scenes/Components/on_jump_component.tscn" id="2_m2e8l"]
+[ext_resource type="Texture2D" uid="uid://blhyu30pdcb4u" path="res://Graphics/Enemy/SunridgeGuy.png" id="2_t508k"]
+[ext_resource type="PackedScene" uid="uid://bg8806v1rj0h7" path="res://Scenes/Components/on_ground_pound_component.tscn" id="4_03kvv"]
+[ext_resource type="PackedScene" uid="uid://dirwp38w8mv8g" path="res://Scenes/Components/run_component.tscn" id="5_tj3or"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqm83"]
+atlas = ExtResource("2_t508k")
+region = Rect2(47, 27, 22, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ufur"]
+atlas = ExtResource("2_t508k")
+region = Rect2(24, 27, 22, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5doj"]
+atlas = ExtResource("2_t508k")
+region = Rect2(1, 27, 22, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4run6"]
+atlas = ExtResource("2_t508k")
+region = Rect2(24, 79, 22, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxabf"]
+atlas = ExtResource("2_t508k")
+region = Rect2(1, 53, 22, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asv5s"]
+atlas = ExtResource("2_t508k")
+region = Rect2(1, 79, 22, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60kns"]
+atlas = ExtResource("2_t508k")
+region = Rect2(1, 1, 22, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c143v"]
+atlas = ExtResource("2_t508k")
+region = Rect2(24, 1, 22, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fd6fg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqm83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ufur")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_o5doj")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4run6")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxabf")
+}],
+"loop": true,
+"name": &"Defend",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asv5s")
+}],
+"loop": true,
+"name": &"Stun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60kns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c143v")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwvnt"]
+size = Vector2(8, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh3mh"]
+size = Vector2(8, 17)
+
+[node name="SunridgeGuy" type="CharacterBody2D" groups=["Enemy"]]
+z_index = -1
+collision_layer = 2
+collision_mask = 4
+floor_snap_length = 8.0
+script = ExtResource("1_fnyyn")
+
+[node name="RunComponent" parent="." instance=ExtResource("5_tj3or")]
+
+[node name="OnJumpComponent" parent="." instance=ExtResource("2_m2e8l")]
+
+[node name="OnGroundPoundComponent" parent="." instance=ExtResource("4_03kvv")]
+
+[node name="SwordComponent" parent="." instance=ExtResource("1_57hx4")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fd6fg")
+animation = &"Attack"
+autoplay = "Walk"
+frame = 2
+frame_progress = 1.0
+offset = Vector2(0, -0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_cwvnt")
+
+[node name="InteractionHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHitbox"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_nh3mh")
+debug_color = Color(0.789366, 0.093724, 1, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(5, 3.4)
+
+[node name="StunTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="jumped_on" from="OnJumpComponent" to="." method="_on_on_jump_component_jumped_on"]
+[connection signal="ground_pound_on" from="OnGroundPoundComponent" to="." method="_on_on_ground_pound_component_ground_pound_on"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnJumpComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnGroundPoundComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkj2jjjq54g8w"]
+
+[ext_resource type="Texture2D" uid="uid://dvn4w2e3tynto" path="res://Graphics/Backdrops/GrassBG1.png" id="1_xols3"]
+[ext_resource type="Texture2D" uid="uid://bjp8161t1awcp" path="res://Graphics/Backdrops/GrassBG2.png" id="2_proxy"]
+[ext_resource type="Texture2D" uid="uid://cyfgixspxr3os" path="res://Graphics/Backdrops/GrassBG3.png" id="3_6luwq"]
+
+[node name="GrassBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0.1)
+motion_offset = Vector2(0, -256)
+motion_mirroring = Vector2(512, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_xols3")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 1)
+motion_offset = Vector2(0, -256)
+motion_mirroring = Vector2(512, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_proxy")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 1)
+motion_offset = Vector2(0, 220)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_6luwq")
+centered = false

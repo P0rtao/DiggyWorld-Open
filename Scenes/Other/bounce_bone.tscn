@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://dsshmtxf7xjpb"]
+
+[ext_resource type="Texture2D" uid="uid://bs4wr4bo0iiqq" path="res://Graphics/Items/Bone.png" id="1_2kfe0"]
+[ext_resource type="Script" uid="uid://b0uksasqsokgm" path="res://Scripts/Other/bounce_bone.gd" id="2_vhk3o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ejqb"]
+atlas = ExtResource("1_2kfe0")
+region = Rect2(1, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvapu"]
+atlas = ExtResource("1_2kfe0")
+region = Rect2(14, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxlor"]
+atlas = ExtResource("1_2kfe0")
+region = Rect2(27, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5arv"]
+atlas = ExtResource("1_2kfe0")
+region = Rect2(40, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1t22"]
+atlas = ExtResource("1_2kfe0")
+region = Rect2(53, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqw18"]
+atlas = ExtResource("1_2kfe0")
+region = Rect2(66, 1, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7jhw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ejqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvapu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxlor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5arv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1t22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqw18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1t22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5arv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxlor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvapu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="BounceBone" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_b7jhw")
+autoplay = "default"
+frame = 4
+frame_progress = 0.69715
+script = ExtResource("2_vhk3o")
+
+[node name="BounceTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="BounceTimer" to="." method="_on_bounce_timer_timeout"]

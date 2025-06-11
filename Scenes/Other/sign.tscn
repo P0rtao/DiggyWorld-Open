@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://c48h77dqlo3aq"]
+
+[ext_resource type="Texture2D" uid="uid://cy7ma7vwxhj7y" path="res://Graphics/Decorations/Sign.png" id="1_cvyl7"]
+[ext_resource type="Script" uid="uid://bvav5eekm72q5" path="res://Scripts/Other/sign.gd" id="2_vngye"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr7ua"]
+atlas = ExtResource("1_cvyl7")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy2pb"]
+atlas = ExtResource("1_cvyl7")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yilb7"]
+atlas = ExtResource("1_cvyl7")
+region = Rect2(52, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_of4cr"]
+atlas = ExtResource("1_cvyl7")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0il5"]
+atlas = ExtResource("1_cvyl7")
+region = Rect2(69, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgs61"]
+atlas = ExtResource("1_cvyl7")
+region = Rect2(86, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aumeo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr7ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy2pb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yilb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_of4cr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0il5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgs61")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Sign" type="AnimatedSprite2D"]
+z_index = -2
+sprite_frames = SubResource("SpriteFrames_aumeo")
+autoplay = "default"
+script = ExtResource("2_vngye")

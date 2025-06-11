@@ -1,0 +1,181 @@
+[gd_scene load_steps=19 format=3 uid="uid://cfa4iynymneos"]
+
+[ext_resource type="Script" uid="uid://c4t5s6do7lawa" path="res://Scripts/ScriptedSequences/boss_switch.gd" id="1_7lbke"]
+[ext_resource type="Texture2D" uid="uid://dkbqmuhc4rnwx" path="res://Graphics/Interactables/SunridgeWeirdCube.png" id="1_mtn3t"]
+[ext_resource type="Script" uid="uid://bc8pdtkiwd11k" path="res://Scripts/BossHandlers/boss_sunridge_handler.gd" id="1_xba7t"]
+[ext_resource type="Script" uid="uid://c1twg2st6ijqr" path="res://Scripts/ScriptedSequences/cam_switch.gd" id="2_ok0kc"]
+[ext_resource type="Texture2D" uid="uid://bukne0j086q61" path="res://Graphics/Particles/LightTexture.png" id="4_3njfa"]
+[ext_resource type="Script" uid="uid://8qufyk43ia7r" path="res://Scripts/ScriptedSequences/kill_plane.gd" id="5_gai43"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldubk"]
+size = Vector2(74, 395)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfjha"]
+size = Vector2(81, 390)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qk4jq"]
+distance = -451.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55pjg"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgory"]
+atlas = ExtResource("1_mtn3t")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6ff2"]
+atlas = ExtResource("1_mtn3t")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8pb5"]
+atlas = ExtResource("1_mtn3t")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xecoc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgory")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6ff2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8pb5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_pbbdc"]
+resource_name = "Bob"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1216, 106), Vector2(1216, 105), Vector2(1216, 106), Vector2(1216, 105), Vector2(1216, 106), Vector2(1216, 105), Vector2(1216, 106), Vector2(1216, 105), Vector2(1216, 106), Vector2(1216, 105), Vector2(1216, 106), Vector2(1216, 105), Vector2(1216, 106), Vector2(1216, 105), Vector2(1216, 106), Vector2(1216, 105), Vector2(1216, 106)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_u31pn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1216, 106)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwwk8"]
+_data = {
+&"Bob": SubResource("Animation_pbbdc"),
+&"RESET": SubResource("Animation_u31pn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21tk2"]
+size = Vector2(20, 389)
+
+[node name="BossArena" type="Node2D"]
+script = ExtResource("1_xba7t")
+
+[node name="LimitLeft" type="StaticBody2D" parent="."]
+collision_layer = 136
+collision_mask = 136
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitLeft"]
+position = Vector2(987, -1.5)
+shape = SubResource("RectangleShape2D_ldubk")
+disabled = true
+
+[node name="LimitRight" type="StaticBody2D" parent="."]
+collision_layer = 136
+collision_mask = 136
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitRight"]
+position = Vector2(1448.5, 0)
+shape = SubResource("RectangleShape2D_rfjha")
+
+[node name="BottomLimit" type="Area2D" parent="."]
+collision_mask = 15
+script = ExtResource("5_gai43")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomLimit"]
+shape = SubResource("WorldBoundaryShape2D_qk4jq")
+disabled = true
+
+[node name="StartTrigger" type="Area2D" parent="."]
+position = Vector2(1216, 106)
+script = ExtResource("1_7lbke")
+cam_position = Vector2(1216, 107)
+
+[node name="PointLight2D" type="PointLight2D" parent="StartTrigger"]
+color = Color(0.867183, 0.602419, 0.890684, 1)
+texture = ExtResource("4_3njfa")
+texture_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartTrigger"]
+shape = SubResource("RectangleShape2D_55pjg")
+debug_color = Color(0.84034, 0.00113897, 0.922391, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StartTrigger"]
+rotation = 0.735125
+sprite_frames = SubResource("SpriteFrames_xecoc")
+autoplay = "default"
+frame_progress = 0.268425
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StartTrigger"]
+libraries = {
+&"": SubResource("AnimationLibrary_mwwk8")
+}
+autoplay = "Bob"
+
+[node name="CameraSwitch" type="Area2D" parent="."]
+script = ExtResource("2_ok0kc")
+cam_position = Vector2(1216, 107)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraSwitch"]
+position = Vector2(1069, -2.5)
+shape = SubResource("RectangleShape2D_21tk2")
+debug_color = Color(0.762434, 0.174924, 1, 0.42)
+
+[node name="BossStartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="BossStopTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="BottomLimit" to="BottomLimit" method="_on_body_entered"]
+[connection signal="body_entered" from="StartTrigger" to="StartTrigger" method="_on_body_entered"]
+[connection signal="start_boss" from="StartTrigger" to="." method="_on_start_trigger_start_boss"]
+[connection signal="body_entered" from="CameraSwitch" to="CameraSwitch" method="_on_body_entered"]
+[connection signal="timeout" from="BossStartTimer" to="." method="_on_boss_start_timer_timeout"]
+[connection signal="timeout" from="BossStopTimer" to="." method="_on_boss_stop_timer_timeout"]

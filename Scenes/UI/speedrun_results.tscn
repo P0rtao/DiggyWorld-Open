@@ -1,0 +1,243 @@
+[gd_scene load_steps=9 format=3 uid="uid://baii55tbb5srf"]
+
+[ext_resource type="Script" uid="uid://cbxjnmmp4fo2v" path="res://Scripts/Other/speedrun_results.gd" id="1_0dlnd"]
+[ext_resource type="PackedScene" uid="uid://brlfbefvgd0kl" path="res://Scenes/Other/hub_background.tscn" id="1_jfujn"]
+[ext_resource type="Texture2D" uid="uid://d22db1hqgg7vy" path="res://Graphics/UI/SpeedrunResultBorder.png" id="2_1jinv"]
+[ext_resource type="FontFile" uid="uid://cb0se2n3oehgs" path="res://Font/DiggyWorldFont.ttf" id="4_n0jf0"]
+[ext_resource type="PackedScene" uid="uid://6n071h8v5bp2" path="res://Scenes/UI/number_display.tscn" id="5_uk21r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n0jf0"]
+font = ExtResource("4_n0jf0")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uk21r"]
+font = ExtResource("4_n0jf0")
+font_size = 8
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dy723"]
+font = ExtResource("4_n0jf0")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SpeedrunResults" type="Node2D"]
+script = ExtResource("1_0dlnd")
+
+[node name="HubBackground" parent="." instance=ExtResource("1_jfujn")]
+
+[node name="Borders" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Borders"]
+motion_mirroring = Vector2(0, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="Borders/ParallaxLayer"]
+texture = ExtResource("2_1jinv")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Borders/ParallaxLayer"]
+position = Vector2(320, 0)
+texture = ExtResource("2_1jinv")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Borders/ParallaxLayer"]
+position = Vector2(0, 256)
+texture = ExtResource("2_1jinv")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Borders/ParallaxLayer"]
+position = Vector2(320, 256)
+texture = ExtResource("2_1jinv")
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(192, 108)
+zoom = Vector2(3, 3)
+
+[node name="BestTimesLabel" type="Label" parent="."]
+offset_right = 384.0
+offset_bottom = 40.0
+text = "Best Times"
+label_settings = SubResource("LabelSettings_n0jf0")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="ReturnLabel" type="Label" parent="."]
+offset_top = 27.0
+offset_right = 384.0
+offset_bottom = 51.0
+text = "Press Start to return"
+label_settings = SubResource("LabelSettings_uk21r")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="Time1" type="Node2D" parent="."]
+position = Vector2(0, 31)
+
+[node name="TimerLabel" type="Label" parent="Time1"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 77.0
+offset_top = 34.0
+offset_right = 333.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = ":    :    :"
+label_settings = SubResource("LabelSettings_dy723")
+horizontal_alignment = 1
+
+[node name="Hours" parent="Time1" instance=ExtResource("5_uk21r")]
+position = Vector2(98, 56)
+scale = Vector2(3, 3)
+
+[node name="Minutes" parent="Time1" instance=ExtResource("5_uk21r")]
+position = Vector2(162, 56)
+scale = Vector2(3, 3)
+
+[node name="Seconds" parent="Time1" instance=ExtResource("5_uk21r")]
+position = Vector2(226, 56)
+scale = Vector2(3, 3)
+
+[node name="Tseconds" parent="Time1" instance=ExtResource("5_uk21r")]
+position = Vector2(263, 56)
+scale = Vector2(3, 3)
+display_num = 1
+
+[node name="Time2" type="Node2D" parent="."]
+position = Vector2(0, 58)
+
+[node name="TimerLabel" type="Label" parent="Time2"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 77.0
+offset_top = 34.0
+offset_right = 333.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = ":    :    :"
+label_settings = SubResource("LabelSettings_dy723")
+horizontal_alignment = 1
+
+[node name="Hours" parent="Time2" instance=ExtResource("5_uk21r")]
+position = Vector2(98, 56)
+scale = Vector2(3, 3)
+
+[node name="Minutes" parent="Time2" instance=ExtResource("5_uk21r")]
+position = Vector2(162, 56)
+scale = Vector2(3, 3)
+
+[node name="Seconds" parent="Time2" instance=ExtResource("5_uk21r")]
+position = Vector2(226, 56)
+scale = Vector2(3, 3)
+
+[node name="Tseconds" parent="Time2" instance=ExtResource("5_uk21r")]
+position = Vector2(263, 56)
+scale = Vector2(3, 3)
+display_num = 1
+
+[node name="Time3" type="Node2D" parent="."]
+position = Vector2(0, 85)
+
+[node name="TimerLabel" type="Label" parent="Time3"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 77.0
+offset_top = 34.0
+offset_right = 333.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = ":    :    :"
+label_settings = SubResource("LabelSettings_dy723")
+horizontal_alignment = 1
+
+[node name="Hours" parent="Time3" instance=ExtResource("5_uk21r")]
+position = Vector2(98, 56)
+scale = Vector2(3, 3)
+
+[node name="Minutes" parent="Time3" instance=ExtResource("5_uk21r")]
+position = Vector2(162, 56)
+scale = Vector2(3, 3)
+
+[node name="Seconds" parent="Time3" instance=ExtResource("5_uk21r")]
+position = Vector2(226, 56)
+scale = Vector2(3, 3)
+
+[node name="Tseconds" parent="Time3" instance=ExtResource("5_uk21r")]
+position = Vector2(263, 56)
+scale = Vector2(3, 3)
+display_num = 1
+
+[node name="Time4" type="Node2D" parent="."]
+position = Vector2(0, 112)
+
+[node name="TimerLabel" type="Label" parent="Time4"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 77.0
+offset_top = 34.0
+offset_right = 333.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = ":    :    :"
+label_settings = SubResource("LabelSettings_dy723")
+horizontal_alignment = 1
+
+[node name="Hours" parent="Time4" instance=ExtResource("5_uk21r")]
+position = Vector2(98, 56)
+scale = Vector2(3, 3)
+
+[node name="Minutes" parent="Time4" instance=ExtResource("5_uk21r")]
+position = Vector2(162, 56)
+scale = Vector2(3, 3)
+
+[node name="Seconds" parent="Time4" instance=ExtResource("5_uk21r")]
+position = Vector2(226, 56)
+scale = Vector2(3, 3)
+
+[node name="Tseconds" parent="Time4" instance=ExtResource("5_uk21r")]
+position = Vector2(263, 56)
+scale = Vector2(3, 3)
+display_num = 1
+
+[node name="Time5" type="Node2D" parent="."]
+position = Vector2(0, 139)
+
+[node name="TimerLabel" type="Label" parent="Time5"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 77.0
+offset_top = 34.0
+offset_right = 333.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = ":    :    :"
+label_settings = SubResource("LabelSettings_dy723")
+horizontal_alignment = 1
+
+[node name="Hours" parent="Time5" instance=ExtResource("5_uk21r")]
+position = Vector2(98, 56)
+scale = Vector2(3, 3)
+
+[node name="Minutes" parent="Time5" instance=ExtResource("5_uk21r")]
+position = Vector2(162, 56)
+scale = Vector2(3, 3)
+
+[node name="Seconds" parent="Time5" instance=ExtResource("5_uk21r")]
+position = Vector2(226, 56)
+scale = Vector2(3, 3)
+
+[node name="Tseconds" parent="Time5" instance=ExtResource("5_uk21r")]
+position = Vector2(263, 56)
+scale = Vector2(3, 3)
+display_num = 1

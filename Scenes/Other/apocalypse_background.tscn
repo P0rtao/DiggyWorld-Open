@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://pnrhynj71nfx"]
+
+[ext_resource type="Texture2D" uid="uid://btlqehvqphwdo" path="res://Graphics/Backdrops/ApocalypseBG1.png" id="1_3pmjq"]
+[ext_resource type="Texture2D" uid="uid://cj22a6xgi3ww1" path="res://Graphics/Backdrops/ApocalypseBG2.png" id="2_rhp6k"]
+[ext_resource type="Texture2D" uid="uid://pk7nn4ux2nsw" path="res://Graphics/Backdrops/ApocalypseBG3.png" id="3_c3hvt"]
+
+[node name="ApocalypseBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(0, -172)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_3pmjq")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 0.3)
+motion_offset = Vector2(0, -290)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_rhp6k")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_offset = Vector2(0, -256)
+motion_mirroring = Vector2(512, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(-6, -1)
+scale = Vector2(2, 2)
+texture = ExtResource("3_c3hvt")
+centered = false

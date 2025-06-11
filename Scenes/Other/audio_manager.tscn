@@ -1,0 +1,191 @@
+[gd_scene load_steps=36 format=3 uid="uid://d27fxeoar3gj"]
+
+[ext_resource type="AudioStream" uid="uid://bq4rh0skmjbwm" path="res://Audio/jump.wav" id="1_427lh"]
+[ext_resource type="Script" uid="uid://crhw5p8arnt4x" path="res://Scripts/Other/audio_manager.gd" id="1_s8i0c"]
+[ext_resource type="AudioStream" uid="uid://c2uyxbl7tricr" path="res://Audio/spin.wav" id="2_fbgk4"]
+[ext_resource type="AudioStream" uid="uid://dcsetd2htr45i" path="res://Audio/stomp.wav" id="3_6yhr7"]
+[ext_resource type="AudioStream" uid="uid://dijtg3b1j3sv6" path="res://Audio/swim.wav" id="3_t5m0k"]
+[ext_resource type="AudioStream" uid="uid://dgsuct46kxxpr" path="res://Audio/BigStomp.wav" id="4_c3rip"]
+[ext_resource type="AudioStream" uid="uid://ut6e78t6ynks" path="res://Audio/collect.wav" id="4_pqlh3"]
+[ext_resource type="AudioStream" uid="uid://ct3freykjnd72" path="res://Audio/Shatter.wav" id="5_4uhep"]
+[ext_resource type="AudioStream" uid="uid://cm5dae7dj03dg" path="res://Audio/1up.wav" id="5_rrcwo"]
+[ext_resource type="AudioStream" uid="uid://bm5orw6bacnm" path="res://Audio/Bounce.wav" id="6_vpigb"]
+[ext_resource type="AudioStream" uid="uid://bsoedy710nel7" path="res://Audio/skid.wav" id="8_gs6r2"]
+[ext_resource type="AudioStream" uid="uid://ch8ex2jm3bxd5" path="res://Audio/GoldenBoneGrass.wav" id="9_ancon"]
+[ext_resource type="AudioStream" uid="uid://dr5104etrgsbe" path="res://Audio/hurt.wav" id="9_er4f1"]
+[ext_resource type="AudioStream" uid="uid://db683b3tsamjg" path="res://Audio/GameOver.wav" id="9_qpyv8"]
+[ext_resource type="AudioStream" uid="uid://csjb03f8yoxkw" path="res://Audio/GoldenBoneHaunted.wav" id="10_0bk0b"]
+[ext_resource type="AudioStream" uid="uid://b6af0kb6xi4ju" path="res://Audio/MusicHub.wav" id="10_sux0k"]
+[ext_resource type="AudioStream" uid="uid://thaq0h3xw74u" path="res://Audio/GoldenBoneSunridge.wav" id="11_bvbc1"]
+[ext_resource type="AudioStream" uid="uid://bu8noi66a1mx8" path="res://Audio/MusicGrass.wav" id="11_na6uj"]
+[ext_resource type="AudioStream" uid="uid://cr8sse48r8hi3" path="res://Audio/GoldenBoneBoss.wav" id="13_i4dc3"]
+[ext_resource type="AudioStream" uid="uid://cj8p3qs3y78r6" path="res://Audio/MusicHaunted.wav" id="13_uu3wo"]
+[ext_resource type="AudioStream" uid="uid://crn2ayjgylfw1" path="res://Audio/MusicSunridge.wav" id="14_77g84"]
+[ext_resource type="AudioStream" uid="uid://ciyubnnc6yo37" path="res://Audio/GoldenBoneApocalypse.wav" id="14_sr4ye"]
+[ext_resource type="AudioStream" uid="uid://quducrposvoa" path="res://Audio/MusicSaveSelect.wav" id="16_yfx6g"]
+[ext_resource type="AudioStream" uid="uid://cidbqoo55f6j6" path="res://Audio/MusicBoss.wav" id="17_dtobp"]
+[ext_resource type="AudioStream" uid="uid://bobm2j5xwifp5" path="res://Audio/MusicMainMenu.wav" id="17_o5ag4"]
+[ext_resource type="AudioStream" uid="uid://7ix1slw3xywh" path="res://Audio/GoldenBoneDevoria.wav" id="19_m3v5h"]
+[ext_resource type="AudioStream" uid="uid://ckupikhc36aqc" path="res://Audio/MusicTutorial.wav" id="20_mkk5j"]
+[ext_resource type="AudioStream" uid="uid://byg16ouo63j" path="res://Audio/MusicApocalypse.wav" id="20_podth"]
+[ext_resource type="AudioStream" uid="uid://b3oyg87rwwvvi" path="res://Audio/MusicFinalBoss.wav" id="21_nply3"]
+[ext_resource type="AudioStream" uid="uid://cjjb462j4ts7d" path="res://Audio/MusicCredits.wav" id="21_pa8qn"]
+[ext_resource type="AudioStream" uid="uid://cxixjbbng1gva" path="res://Audio/MusicSpeedrunResults.wav" id="22_duwwg"]
+[ext_resource type="AudioStream" uid="uid://bynw4vmoq2sbs" path="res://Audio/Shake.wav" id="24_w5mnm"]
+[ext_resource type="AudioStream" uid="uid://r0yocxdvx0nw" path="res://Audio/MusicDevoria.wav" id="28_xh5yl"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_taysr"]
+clip_count = 6
+clip_0/name = &"Grass"
+clip_0/stream = ExtResource("9_ancon")
+clip_0/auto_advance = 0
+clip_1/name = &"Haunted"
+clip_1/stream = ExtResource("10_0bk0b")
+clip_1/auto_advance = 0
+clip_2/name = &"Sunridge"
+clip_2/stream = ExtResource("11_bvbc1")
+clip_2/auto_advance = 0
+clip_3/name = &"Boss"
+clip_3/stream = ExtResource("13_i4dc3")
+clip_3/auto_advance = 0
+clip_4/name = &"Apocalypse"
+clip_4/stream = ExtResource("14_sr4ye")
+clip_4/auto_advance = 0
+clip_5/name = &"Devoria"
+clip_5/stream = ExtResource("19_m3v5h")
+clip_5/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_j0gfu"]
+clip_count = 14
+clip_0/name = &"MainMenu"
+clip_0/stream = ExtResource("17_o5ag4")
+clip_0/auto_advance = 0
+clip_1/name = &"Tutorial"
+clip_1/stream = ExtResource("20_mkk5j")
+clip_1/auto_advance = 0
+clip_2/name = &"SaveRoom"
+clip_2/stream = ExtResource("16_yfx6g")
+clip_2/auto_advance = 0
+clip_3/name = &"Hub"
+clip_3/stream = ExtResource("10_sux0k")
+clip_3/auto_advance = 0
+clip_4/name = &"Grass"
+clip_4/stream = ExtResource("11_na6uj")
+clip_4/auto_advance = 0
+clip_5/name = &"Haunted"
+clip_5/stream = ExtResource("13_uu3wo")
+clip_5/auto_advance = 0
+clip_6/name = &"Sunridge"
+clip_6/stream = ExtResource("14_77g84")
+clip_6/auto_advance = 0
+clip_7/name = &"Apocalypse"
+clip_7/stream = ExtResource("20_podth")
+clip_7/auto_advance = 0
+clip_8/name = &"Boss"
+clip_8/stream = ExtResource("17_dtobp")
+clip_8/auto_advance = 0
+clip_9/name = &"Lava"
+clip_9/stream = ExtResource("24_w5mnm")
+clip_9/auto_advance = 0
+clip_10/name = &"Devoria"
+clip_10/stream = ExtResource("28_xh5yl")
+clip_10/auto_advance = 0
+clip_11/name = &"FinalBoss"
+clip_11/stream = ExtResource("21_nply3")
+clip_11/auto_advance = 0
+clip_12/name = &"Credits"
+clip_12/stream = ExtResource("21_pa8qn")
+clip_12/auto_advance = 0
+clip_13/name = &"Results"
+clip_13/stream = ExtResource("22_duwwg")
+clip_13/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 0.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_s8i0c")
+
+[node name="JumpAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_427lh")
+bus = &"SFX"
+
+[node name="SwimAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_t5m0k")
+
+[node name="SpinAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fbgk4")
+bus = &"SFX"
+
+[node name="ShatterAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4uhep")
+bus = &"SFX"
+
+[node name="BigStompAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_c3rip")
+
+[node name="StompAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6yhr7")
+bus = &"SFX"
+
+[node name="BounceAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_vpigb")
+
+[node name="CollectAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pqlh3")
+bus = &"SFX"
+
+[node name="LifeAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rrcwo")
+bus = &"SFX"
+
+[node name="HurtAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_er4f1")
+bus = &"SFX"
+
+[node name="SkidAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_gs6r2")
+bus = &"SFX"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_qpyv8")
+bus = &"Music"
+
+[node name="GoldenBone" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_taysr")
+bus = &"Music"
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_j0gfu")
+bus = &"Music"

@@ -1,0 +1,111 @@
+[gd_scene load_steps=13 format=3 uid="uid://hgtcqp20o4vf"]
+
+[ext_resource type="Texture2D" uid="uid://co54u22ccrsk1" path="res://Graphics/Enemy/PoatoEnemy.png" id="1_1fmhy"]
+[ext_resource type="Script" uid="uid://cjup247wbmpvt" path="res://Scripts/Enemies/orange_enemy.gd" id="1_te746"]
+[ext_resource type="PackedScene" uid="uid://c06h7nmwxk8xn" path="res://Scenes/Components/walk_component.tscn" id="2_tt5c2"]
+[ext_resource type="PackedScene" uid="uid://7r71nhjr87r" path="res://Scenes/Components/on_jump_component.tscn" id="4_o5b6e"]
+[ext_resource type="PackedScene" uid="uid://bg8806v1rj0h7" path="res://Scenes/Components/on_ground_pound_component.tscn" id="5_vyjcq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucfmx"]
+atlas = ExtResource("1_1fmhy")
+region = Rect2(1, 19, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg83w"]
+atlas = ExtResource("1_1fmhy")
+region = Rect2(18, 19, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tio3"]
+atlas = ExtResource("1_1fmhy")
+region = Rect2(1, 1, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7pen"]
+atlas = ExtResource("1_1fmhy")
+region = Rect2(18, 1, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7w3pp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucfmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg83w")
+}],
+"loop": true,
+"name": &"FlippedOver",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tio3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7pen")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvkdk"]
+size = Vector2(8, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uro6c"]
+size = Vector2(8, 13)
+
+[node name="OrangeEnemy" type="CharacterBody2D" groups=["Enemy"]]
+z_index = -1
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_te746")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -0.5)
+sprite_frames = SubResource("SpriteFrames_7w3pp")
+animation = &"Walking"
+autoplay = "Walking"
+frame = 1
+frame_progress = 0.659699
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_jvkdk")
+
+[node name="WalkComponent" parent="." instance=ExtResource("2_tt5c2")]
+walkspeed = 35.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(3.5, 2.6)
+
+[node name="OnJumpComponent" parent="." instance=ExtResource("4_o5b6e")]
+
+[node name="FlippedTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="CanHurtDelay" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="OnGroundPoundComponent" parent="." instance=ExtResource("5_vyjcq")]
+
+[node name="InteractionHitbox" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_uro6c")
+debug_color = Color(0.903132, 0.00014959, 0.754079, 0.42)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="jumped_on" from="OnJumpComponent" to="." method="_on_on_jump_component_jumped_on"]
+[connection signal="timeout" from="FlippedTimer" to="." method="_on_flipped_timer_timeout"]
+[connection signal="timeout" from="CanHurtDelay" to="." method="_on_can_hurt_delay_timeout"]
+[connection signal="ground_pound_on" from="OnGroundPoundComponent" to="." method="_on_on_ground_pound_component_ground_pound_on"]
+[connection signal="body_entered" from="InteractionHitbox" to="." method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnJumpComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnGroundPoundComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_exited" from="InteractionHitbox" to="." method="_on_interaction_hitbox_body_exited"]

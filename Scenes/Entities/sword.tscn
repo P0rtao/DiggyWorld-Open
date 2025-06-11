@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://blc6utlvplxex"]
+
+[ext_resource type="Texture2D" uid="uid://dr1y3nj5pki8n" path="res://Graphics/Items/Sword.png" id="1_cm3i7"]
+[ext_resource type="Script" uid="uid://dedlattwn7dgy" path="res://Scripts/Collectables/sword.gd" id="1_mh11t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hohe"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_3vhfw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_8kvnr"]
+resource_name = "SwordBob"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ye2tv"]
+_data = {
+&"RESET": SubResource("Animation_3vhfw"),
+&"SwordBob": SubResource("Animation_8kvnr")
+}
+
+[node name="Sword" type="Area2D"]
+script = ExtResource("1_mh11t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cm3i7")
+offset = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6hohe")
+debug_color = Color(0.796298, 0.0575919, 1, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ye2tv")
+}
+autoplay = "SwordBob"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

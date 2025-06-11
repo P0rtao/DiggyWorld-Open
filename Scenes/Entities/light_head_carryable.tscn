@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dva5mypriua35"]
+
+[ext_resource type="PackedScene" uid="uid://tktxqdly08iw" path="res://Scenes/Entities/carryable_object.tscn" id="1_f00jb"]
+[ext_resource type="Texture2D" uid="uid://cug18nw12sx4i" path="res://Graphics/Items/LightHead.png" id="2_2cwk5"]
+[ext_resource type="Texture2D" uid="uid://bruvgravjvakb" path="res://Graphics/Particles/WideLightTexture.png" id="3_2cwk5"]
+[ext_resource type="Script" uid="uid://br0w0vpc7soq8" path="res://Scripts/Other/light_head_carryable_light.gd" id="3_jgrxm"]
+
+[node name="LightHeadCarryable" instance=ExtResource("1_f00jb")]
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="1"]
+position = Vector2(-48, 0)
+color = Color(0.999999, 0.992743, 0.294019, 1)
+texture = ExtResource("3_2cwk5")
+script = ExtResource("3_jgrxm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_2cwk5")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://01yaktom8gyt"]
+
+[ext_resource type="Script" uid="uid://ehw4w1th1u3v" path="res://Scripts/Other/sunridge_background.gd" id="1_jntcs"]
+[ext_resource type="Texture2D" uid="uid://hk8mhrrs088u" path="res://Graphics/Backdrops/SunridgeBG3.png" id="1_l5c3s"]
+
+[node name="SunridgeForeground" type="ParallaxBackground"]
+layer = 1
+script = ExtResource("1_jntcs")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(1.1, 1.1)
+motion_offset = Vector2(0, 192)
+motion_mirroring = Vector2(456, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture = ExtResource("1_l5c3s")
+centered = false

@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://hlcndwrevcur"]
+
+[ext_resource type="Texture2D" uid="uid://dmxkra6i38lf2" path="res://Graphics/Enemy/Skeleton.png" id="1_73jpj"]
+[ext_resource type="Script" uid="uid://be4sfn5yk80g8" path="res://Scripts/Other/bones_particle.gd" id="1_fk5ql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5ml2"]
+atlas = ExtResource("1_73jpj")
+region = Rect2(1, 51, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j1ky"]
+atlas = ExtResource("1_73jpj")
+region = Rect2(14, 51, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqcg0"]
+atlas = ExtResource("1_73jpj")
+region = Rect2(27, 51, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl133"]
+atlas = ExtResource("1_73jpj")
+region = Rect2(40, 51, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4nlt8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5ml2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j1ky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqcg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl133")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="BonesParticle" type="Node2D"]
+script = ExtResource("1_fk5ql")
+
+[node name="Sprite1" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_4nlt8")
+autoplay = "default"
+frame_progress = 0.8799
+
+[node name="Sprite2" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_4nlt8")
+autoplay = "default"
+frame_progress = 0.541315
+
+[node name="Sprite3" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4nlt8")
+autoplay = "default"
+frame_progress = 0.541315
+
+[node name="Sprite4" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4nlt8")
+autoplay = "default"
+frame_progress = 0.541315
+
+[node name="ParticleTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="ParticleTime" to="." method="_on_particle_time_timeout"]

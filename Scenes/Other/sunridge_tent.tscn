@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjx3b8cwetyne"]
+
+[ext_resource type="Texture2D" uid="uid://1lfc51gbrrl8" path="res://Graphics/Decorations/SunridgeTent.png" id="1_pf07o"]
+
+[node name="SunridgeTent" type="Sprite2D"]
+position = Vector2(0, -14)
+texture = ExtResource("1_pf07o")

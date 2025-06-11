@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkal8gjahlw2o"]
+
+[ext_resource type="Texture2D" uid="uid://bt72lx7iu56f" path="res://Graphics/Decorations/SunridgeTree.png" id="1_t422c"]
+
+[node name="SunridgeTree" type="Sprite2D"]
+texture = ExtResource("1_t422c")
+offset = Vector2(0, -66)

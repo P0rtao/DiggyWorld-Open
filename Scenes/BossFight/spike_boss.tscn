@@ -1,0 +1,809 @@
+[gd_scene load_steps=35 format=3 uid="uid://bunheroi1f78t"]
+
+[ext_resource type="Texture2D" uid="uid://b0qjgy183vhx5" path="res://Graphics/Enemy/SpikeHaunted.png" id="1_i8lby"]
+[ext_resource type="Script" uid="uid://bvnvjdychi85d" path="res://Scripts/Enemies/spike_boss.gd" id="1_vf7ug"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to1mx"]
+atlas = ExtResource("1_i8lby")
+region = Rect2(1, 1, 38, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgc4c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to1mx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_vf7ug"]
+resource_name = "HeadBob"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_746t5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h8u0w"]
+_data = {
+&"HeadBob": SubResource("Animation_vf7ug"),
+&"RESET": SubResource("Animation_746t5")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hkbu"]
+atlas = ExtResource("1_i8lby")
+region = Rect2(1, 45, 36, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6bcdy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hkbu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_h8u0w"]
+resource_name = "BodyBob"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, 0), Vector2(0, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_xp0b1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8plix"]
+_data = {
+&"BodyBob": SubResource("Animation_h8u0w"),
+&"RESET": SubResource("Animation_xp0b1")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vf7ug"]
+atlas = ExtResource("1_i8lby")
+region = Rect2(106, 1, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgc4c"]
+atlas = ExtResource("1_i8lby")
+region = Rect2(73, 33, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bcdy"]
+atlas = ExtResource("1_i8lby")
+region = Rect2(106, 33, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt38g"]
+atlas = ExtResource("1_i8lby")
+region = Rect2(40, 33, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jqo8a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vf7ug")
+}],
+"loop": true,
+"name": &"Defeat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgc4c")
+}],
+"loop": true,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bcdy")
+}],
+"loop": true,
+"name": &"Laugh",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt38g")
+}],
+"loop": true,
+"name": &"Smile",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_8plix"]
+resource_name = "Hurt"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Hurt", &"Smile"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5kv4h"]
+resource_name = "Laugh"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Laugh", &"Smile"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bhuop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Laugh"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pos4q"]
+_data = {
+&"Hurt": SubResource("Animation_8plix"),
+&"Laugh": SubResource("Animation_5kv4h"),
+&"RESET": SubResource("Animation_bhuop")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqo8a"]
+atlas = ExtResource("1_i8lby")
+region = Rect2(73, 1, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44uca"]
+atlas = ExtResource("1_i8lby")
+region = Rect2(40, 1, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hq7ig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqo8a")
+}],
+"loop": true,
+"name": &"Fist",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44uca")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ycqfy"]
+resource_name = "Defeat"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Face:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Defeat"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftHand:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Open"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftHand:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(33, 3), Vector2(37, 3), Vector2(33, 3), Vector2(37, 3), Vector2(33, 3), Vector2(37, 3), Vector2(33, 3), Vector2(33, 3), Vector2(37, 3), Vector2(33, 3), Vector2(37, 3), Vector2(33, 3), Vector2(37, 3), Vector2(33, 3), Vector2(33, -47)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightHand:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Open"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RightHand:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-33, 3), Vector2(-39, 3), Vector2(-33, 3), Vector2(-39, 3), Vector2(-33, 3), Vector2(-39, 3), Vector2(-33, 3), Vector2(-33, 3), Vector2(-39, 3), Vector2(-33, 3), Vector2(-39, 3), Vector2(-33, 3), Vector2(-39, 3), Vector2(-33, 3), Vector2(-33, -47)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, -22), Vector2(-1, -21), Vector2(1, -22), Vector2(-1, -21), Vector2(1, -22), Vector2(-1, -21), Vector2(1, -22), Vector2(-1, -21), Vector2(1, -22), Vector2(-1, -21), Vector2(1, -22), Vector2(-1, -21), Vector2(1, -22), Vector2(-1, -21)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Face:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(1, -13), Vector2(-1, -13), Vector2(-1, -13), Vector2(0, -13), Vector2(0, -14)]
+}
+
+[sub_resource type="Animation" id="Animation_rvwy1"]
+resource_name = "HandSlam"
+length = 3.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightHand:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.05, 2, 2.25, 2.5, 2.55, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-33, 3), Vector2(-33, -18), Vector2(-33, -18), Vector2(-33, -18), Vector2(-33, -28), Vector2(-33, 50), Vector2(-33, 50), Vector2(-33, 50), Vector2(-33, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftHand:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1, 2, 2.25, 2.5, 2.55, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(33, 3), Vector2(33, -18), Vector2(33, -18), Vector2(33, -18), Vector2(33, -27), Vector2(33, 50), Vector2(33, 50), Vector2(33, 50), Vector2(33, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftHand:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Fist", &"Open"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightHand:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Fist", &"Open"]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.55, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_stomp_audio"
+}, {
+"args": [],
+"method": &"start_attack_timer"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_88e1w"]
+resource_name = "HandSlamCenter"
+length = 3.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHand:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.05, 2, 2.25, 2.5, 2.55, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(33, 3), Vector2(10, -18), Vector2(10, -18), Vector2(10, -18), Vector2(10, -28), Vector2(10, 50), Vector2(10, 50), Vector2(10, 50), Vector2(33, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightHand:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1, 2, 2.25, 2.5, 2.55, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-33, 3), Vector2(-10, -18), Vector2(-10, -18), Vector2(-10, -18), Vector2(-10, -28), Vector2(-10, 50), Vector2(-10, 50), Vector2(-10, 50), Vector2(-33, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightHand:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Fist", &"Open"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftHand:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Fist", &"Open"]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.55, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_stomp_audio"
+}, {
+"args": [],
+"method": &"start_attack_timer"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pos4q"]
+resource_name = "HandSway"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightHand:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-34, 7), Vector2(-33, -1), Vector2(-34, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftHand:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(32, -1), Vector2(33, 7), Vector2(32, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_ex0de"]
+resource_name = "HandSweep"
+length = 3.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHand:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Fist", &"Open"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftHand:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75, 1.2, 1.4, 1.6, 2, 2.2, 2.3, 2.8, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(33, 3), Vector2(169, 10), Vector2(169, 10), Vector2(169, 10), Vector2(169, 45), Vector2(169, 45), Vector2(169, 45), Vector2(12, 45), Vector2(12, 45), Vector2(12, 45), Vector2(33, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightHand:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Fist", &"Open"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightHand:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75, 1.2, 1.4, 1.6, 2, 2.2, 2.3, 2.8, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-33, 3), Vector2(-169, 10), Vector2(-169, 10), Vector2(-169, 10), Vector2(-169, 45), Vector2(-169, 45), Vector2(-169, 45), Vector2(-12, 45), Vector2(-12, 45), Vector2(-12, 45), Vector2(-33, 3)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_attack_timer"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xjnh6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-33, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(33, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftHand:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Fist"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightHand:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Fist"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Face:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Smile"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -22)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Face:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -13)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rvwy1"]
+_data = {
+&"Defeat": SubResource("Animation_ycqfy"),
+&"HandSlam": SubResource("Animation_rvwy1"),
+&"HandSlamCenter": SubResource("Animation_88e1w"),
+&"HandSway": SubResource("Animation_pos4q"),
+&"HandSweep": SubResource("Animation_ex0de"),
+&"RESET": SubResource("Animation_xjnh6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecago"]
+size = Vector2(20, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qpkf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf7ug"]
+size = Vector2(20, 58)
+
+[node name="SpikeBoss" type="CharacterBody2D" groups=["Boss"]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_vf7ug")
+
+[node name="Head" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -22)
+sprite_frames = SubResource("SpriteFrames_hgc4c")
+autoplay = "default"
+offset = Vector2(0, 2)
+
+[node name="HeadAnimation" type="AnimationPlayer" parent="Head"]
+libraries = {
+&"": SubResource("AnimationLibrary_h8u0w")
+}
+autoplay = "HeadBob"
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 19)
+sprite_frames = SubResource("SpriteFrames_6bcdy")
+autoplay = "default"
+offset = Vector2(0, 2)
+
+[node name="BodyAnimation" type="AnimationPlayer" parent="Body"]
+libraries = {
+&"": SubResource("AnimationLibrary_8plix")
+}
+autoplay = "BodyBob"
+
+[node name="Face" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_jqo8a")
+animation = &"Smile"
+autoplay = "Smile"
+
+[node name="FaceAnimation" type="AnimationPlayer" parent="Face"]
+libraries = {
+&"": SubResource("AnimationLibrary_pos4q")
+}
+
+[node name="LeftHand" type="AnimatedSprite2D" parent="."]
+position = Vector2(33, 3)
+sprite_frames = SubResource("SpriteFrames_hq7ig")
+animation = &"Fist"
+
+[node name="RightHand" type="AnimatedSprite2D" parent="."]
+position = Vector2(-33, 3)
+sprite_frames = SubResource("SpriteFrames_hq7ig")
+animation = &"Fist"
+flip_h = true
+
+[node name="HandAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rvwy1")
+}
+next/HandSlam = &"HandSway"
+next/HandSlamCenter = &"HandSway"
+next/HandSweep = &"HandSway"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_ecago")
+
+[node name="LeftHandHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHandHitbox"]
+position = Vector2(33, 3)
+shape = SubResource("RectangleShape2D_0qpkf")
+debug_color = Color(0.980382, 0, 0.380148, 0.42)
+
+[node name="RightHandHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightHandHitbox"]
+position = Vector2(-33, 3)
+shape = SubResource("RectangleShape2D_0qpkf")
+debug_color = Color(0.980382, 0, 0.380148, 0.42)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="BodyHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHitbox"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_vf7ug")
+debug_color = Color(0.814732, 0.00198934, 0.97723, 0.42)
+
+[node name="FallTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="body_entered" from="LeftHandHitbox" to="." method="_on_left_hand_hitbox_body_entered"]
+[connection signal="body_entered" from="RightHandHitbox" to="." method="_on_right_hand_hitbox_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="area_entered" from="BodyHitbox" to="." method="_on_body_hitbox_area_entered"]
+[connection signal="timeout" from="FallTimer" to="." method="_on_fall_timer_timeout"]

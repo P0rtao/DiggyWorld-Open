@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvpr75dsk3qq2"]
+
+[ext_resource type="PackedScene" uid="uid://cnav2dtq5cp3y" path="res://Scenes/Entities/block.tscn" id="1_kgrxh"]
+[ext_resource type="Script" uid="uid://cntxgtjc3b1e3" path="res://Scripts/Other/switchable_block.gd" id="2_8v3fj"]
+[ext_resource type="Texture2D" uid="uid://cabspjgg0vyrf" path="res://Graphics/Interactables/SwitchBlocks.png" id="3_l20mb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw7ms"]
+atlas = ExtResource("3_l20mb")
+region = Rect2(18, 35, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3ipf"]
+atlas = ExtResource("3_l20mb")
+region = Rect2(1, 35, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bwpdd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw7ms")
+}],
+"loop": true,
+"name": &"OFF",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3ipf")
+}],
+"loop": true,
+"name": &"ON",
+"speed": 5.0
+}]
+
+[node name="SwitchBlockOFF" groups=["BlockOFF"] instance=ExtResource("1_kgrxh")]
+collision_layer = 31
+collision_mask = 31
+script = ExtResource("2_8v3fj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_bwpdd")
+animation = &"OFF"
+autoplay = "ON"

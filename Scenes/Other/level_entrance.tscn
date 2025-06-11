@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://conoslphq2tch"]
+
+[ext_resource type="Texture2D" uid="uid://dsvipfbfpwx2r" path="res://Graphics/Interactables/LevelEntranceHouse.png" id="1_f3dtf"]
+[ext_resource type="Script" uid="uid://nlsh8d3ft7ti" path="res://Scripts/Other/level_entrance.gd" id="1_ri0hl"]
+[ext_resource type="Texture2D" uid="uid://b0u6ychdd3m50" path="res://Graphics/Interactables/BossEntranceHouse.png" id="2_jbmvw"]
+[ext_resource type="PackedScene" uid="uid://6n071h8v5bp2" path="res://Scenes/UI/number_display.tscn" id="2_vad8h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2aq1"]
+atlas = ExtResource("2_jbmvw")
+region = Rect2(1, 1, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otusg"]
+atlas = ExtResource("2_jbmvw")
+region = Rect2(130, 1, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hniey"]
+atlas = ExtResource("1_f3dtf")
+region = Rect2(1, 1, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pubjb"]
+atlas = ExtResource("1_f3dtf")
+region = Rect2(66, 1, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8otgc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2aq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otusg")
+}],
+"loop": true,
+"name": &"Castle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hniey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pubjb")
+}],
+"loop": true,
+"name": &"House",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuart"]
+size = Vector2(10, 24)
+
+[node name="LevelEntrance" type="Area2D" groups=["Door"]]
+z_index = -1
+script = ExtResource("1_ri0hl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -19)
+sprite_frames = SubResource("SpriteFrames_8otgc")
+animation = &"House"
+autoplay = "House"
+
+[node name="NumberDisplay" parent="." instance=ExtResource("2_vad8h")]
+position = Vector2(-4, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tuart")
+debug_color = Color(0.857116, 0.000736015, 0.882819, 0.42)
+
+[node name="LoadLevelTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="LoadLevelTimer" to="." method="_on_load_level_timer_timeout"]

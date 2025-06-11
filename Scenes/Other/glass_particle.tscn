@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgsf5nec3l6q"]
+
+[ext_resource type="Texture2D" uid="uid://bvtrg61a1or1k" path="res://Graphics/Particles/GlassShatter.png" id="1_f02tn"]
+[ext_resource type="Script" uid="uid://bdhvqa1o5tt1u" path="res://Scripts/Other/glass_particle.gd" id="2_7labh"]
+
+[node name="GlassParticle" type="Sprite2D"]
+texture = ExtResource("1_f02tn")
+script = ExtResource("2_7labh")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

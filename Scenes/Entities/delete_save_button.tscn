@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpxwery60f818"]
+
+[ext_resource type="PackedScene" uid="uid://cnav2dtq5cp3y" path="res://Scenes/Entities/block.tscn" id="1_ivgf6"]
+[ext_resource type="Texture2D" uid="uid://bg0w5xrre5y2p" path="res://Graphics/Interactables/DeleteSaveBlock.png" id="2_h6rff"]
+[ext_resource type="Script" uid="uid://dcffx67jxjffy" path="res://Scripts/Other/delete_save_button.gd" id="2_j4u8k"]
+[ext_resource type="PackedScene" uid="uid://b4ub2hpslq18u" path="res://Scenes/Components/hittable_component.tscn" id="3_8krry"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcira"]
+atlas = ExtResource("2_h6rff")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xqf0f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcira")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v16py"]
+size = Vector2(14, 1)
+
+[node name="DelSaveBlock" instance=ExtResource("1_ivgf6")]
+script = ExtResource("2_j4u8k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_xqf0f")
+autoplay = "default"
+
+[node name="HittableComponent" parent="." index="2" instance=ExtResource("3_8krry")]
+
+[node name="Area2D" type="Area2D" parent="HittableComponent" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HittableComponent/Area2D" index="0"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_v16py")
+debug_color = Color(0.822839, 0.00168881, 0.960525, 0.42)
+
+[node name="BounceTimer" type="Timer" parent="HittableComponent" index="1"]
+wait_time = 0.23
+one_shot = true
+
+[connection signal="body_entered" from="HittableComponent/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="HittableComponent/Area2D" to="HittableComponent" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="HittableComponent/BounceTimer" to="HittableComponent" method="_on_bounce_timer_timeout"]

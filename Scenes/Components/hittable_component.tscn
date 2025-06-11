@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4ub2hpslq18u"]
+
+[ext_resource type="Script" uid="uid://ioiamkbsok2h" path="res://Scripts/Other/hittable_component.gd" id="1_rdc72"]
+
+[node name="HittableComponent" type="Node2D"]
+script = ExtResource("1_rdc72")

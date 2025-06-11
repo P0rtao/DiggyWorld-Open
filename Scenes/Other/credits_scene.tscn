@@ -1,0 +1,361 @@
+[gd_scene load_steps=15 format=3 uid="uid://cu7jabwk4r3w5"]
+
+[ext_resource type="Script" uid="uid://blmr7g50abf3k" path="res://Scripts/Other/credits_scene.gd" id="1_m5cqm"]
+[ext_resource type="Texture2D" uid="uid://cqyff3rxi6cfk" path="res://Graphics/Backdrops/CreditsBG1.png" id="1_q0osf"]
+[ext_resource type="Texture2D" uid="uid://c2v6fpbklbanc" path="res://Graphics/Backdrops/CreditsBG2.png" id="2_3ldof"]
+[ext_resource type="Texture2D" uid="uid://dr6qq7n58gfh5" path="res://Graphics/Backdrops/CreditsBG3.png" id="3_n2qhq"]
+[ext_resource type="Texture2D" uid="uid://sgwaa6bsgnqb" path="res://Graphics/Decorations/DevoriaCredits.png" id="4_31xix"]
+[ext_resource type="FontFile" uid="uid://cb0se2n3oehgs" path="res://Font/DiggyWorldFont.ttf" id="6_k5jvy"]
+
+[sub_resource type="Animation" id="Animation_31xix"]
+resource_name = "DevoriaFly"
+length = 85.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5), Vector2(0, 5), Vector2(0, -5), Vector2(0, -5), Vector2(0, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5, 85),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(430, 111), Vector2(-47, 111)]
+}
+
+[sub_resource type="Animation" id="Animation_m5cqm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(428, 111)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m5cqm"]
+_data = {
+&"DevoriaFly": SubResource("Animation_31xix"),
+&"RESET": SubResource("Animation_m5cqm")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8ggj"]
+font = ExtResource("6_k5jvy")
+font_size = 8
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k5jvy"]
+font = ExtResource("6_k5jvy")
+font_color = Color(0.33195, 0.52915, 0.878629, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_biew7"]
+font = ExtResource("6_k5jvy")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4s4nl"]
+font = ExtResource("6_k5jvy")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_crpvu"]
+font = ExtResource("6_k5jvy")
+font_color = Color(1, 1, 0.341176, 1)
+outline_size = 8
+outline_color = Color(0.495936, 0.495936, 0, 1)
+
+[node name="CreditsScene" type="Node2D"]
+script = ExtResource("1_m5cqm")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_offset = Vector2(62, -40)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_q0osf")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(256, 0)
+texture = ExtResource("1_q0osf")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_offset = Vector2(0, 196)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("2_3ldof")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(256, 0)
+texture = ExtResource("2_3ldof")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("3_n2qhq")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(256, 0)
+texture = ExtResource("3_n2qhq")
+centered = false
+
+[node name="Devoria" type="Sprite2D" parent="."]
+position = Vector2(428, 111)
+texture = ExtResource("4_31xix")
+offset = Vector2(0, 5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Devoria"]
+libraries = {
+&"": SubResource("AnimationLibrary_m5cqm")
+}
+autoplay = "DevoriaFly"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(192, 108)
+zoom = Vector2(3, 3)
+
+[node name="CreditsText" type="Node2D" parent="."]
+
+[node name="CreditsTitle" type="Label" parent="CreditsText"]
+offset_left = 116.0
+offset_top = 227.0
+offset_right = 268.0
+offset_bottom = 242.0
+text = "Diggy world Credits"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle2" type="Label" parent="CreditsText"]
+offset_left = 116.0
+offset_top = 268.0
+offset_right = 268.0
+offset_bottom = 295.0
+text = "Diggy world
+developed by portato"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle3" type="Label" parent="CreditsText"]
+offset_left = 116.0
+offset_top = 325.0
+offset_right = 268.0
+offset_bottom = 352.0
+text = "Directed by
+Portato"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle4" type="Label" parent="CreditsText"]
+offset_top = 354.0
+offset_right = 192.0
+offset_bottom = 381.0
+text = "Art and Animation
+Portato"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle5" type="Label" parent="CreditsText"]
+offset_left = 192.0
+offset_top = 354.0
+offset_right = 384.0
+offset_bottom = 381.0
+text = "Programming
+Portato"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle6" type="Label" parent="CreditsText"]
+offset_left = 116.0
+offset_top = 389.0
+offset_right = 269.0
+offset_bottom = 416.0
+text = "music and sound
+Portato"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle7" type="Label" parent="CreditsText"]
+offset_left = 116.0
+offset_top = 442.0
+offset_right = 269.0
+offset_bottom = 463.0
+text = "Inspirations"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle8" type="Label" parent="CreditsText"]
+offset_left = 104.0
+offset_top = 462.0
+offset_right = 281.0
+offset_bottom = 677.0
+text = "diggy 64 @ Hub theme
+Diggy Real
+ 
+Diggy 64 @ grass theme
+Diggy real
+
+diggy 64 @ boss theme
+Diggy real 
+
+Sunridge Battlers @ Legends
+Diggy Real
+
+Apocalypse @ In Game
+diggy real
+
+Haunted @ bossfight
+Diggy real"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle9" type="Label" parent="CreditsText"]
+offset_left = 116.0
+offset_top = 689.0
+offset_right = 269.0
+offset_bottom = 732.0
+text = "playtesting
+Diggy Real
+Top hat guy"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle10" type="Label" parent="CreditsText"]
+offset_left = 101.0
+offset_top = 746.0
+offset_right = 284.0
+offset_bottom = 782.0
+text = "Special Thanks"
+label_settings = SubResource("LabelSettings_k5jvy")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle11" type="Label" parent="CreditsText"]
+offset_top = 787.0
+offset_right = 208.0
+offset_bottom = 951.0
+text = "Diggy Real
+Marcelo Benevides
+Manuel Diedrich
+PC head
+rodrigo maia
+salgueiro
+filigou"
+label_settings = SubResource("LabelSettings_biew7")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle12" type="Label" parent="CreditsText"]
+offset_left = 192.0
+offset_top = 787.0
+offset_right = 384.0
+offset_bottom = 951.0
+text = "top hat guy
+Samuel Pedro
+Pedro Medeiros
+ZSDev
+Caetra
+Sollen
+Sr. Patinho"
+label_settings = SubResource("LabelSettings_4s4nl")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle13" type="Label" parent="CreditsText"]
+offset_left = 56.0
+offset_top = 1050.0
+offset_right = 329.0
+offset_bottom = 1086.0
+text = "@ Thanks for playing @"
+label_settings = SubResource("LabelSettings_crpvu")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="CreditsTitle14" type="Label" parent="CreditsText"]
+offset_left = 116.0
+offset_top = 1195.0
+offset_right = 269.0
+offset_bottom = 1216.0
+text = "Press start to return"
+label_settings = SubResource("LabelSettings_c8ggj")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true

@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://vmmajxpd1cha"]
+
+[ext_resource type="PackedScene" uid="uid://cnav2dtq5cp3y" path="res://Scenes/Entities/block.tscn" id="1_1r7ol"]
+[ext_resource type="Texture2D" uid="uid://c0c5q3d3j1doq" path="res://Graphics/Interactables/ItemBlock.png" id="2_bxs8o"]
+[ext_resource type="Script" uid="uid://dldy2mdq5obd6" path="res://Scripts/Other/hittable_block.gd" id="2_l3jx0"]
+[ext_resource type="PackedScene" uid="uid://b4ub2hpslq18u" path="res://Scenes/Components/hittable_component.tscn" id="3_cdeyy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e85m0"]
+atlas = ExtResource("2_bxs8o")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0wht"]
+atlas = ExtResource("2_bxs8o")
+region = Rect2(86, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmc6b"]
+atlas = ExtResource("2_bxs8o")
+region = Rect2(69, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c4e8"]
+atlas = ExtResource("2_bxs8o")
+region = Rect2(52, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jff6o"]
+atlas = ExtResource("2_bxs8o")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km6vm"]
+atlas = ExtResource("2_bxs8o")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2surq"]
+atlas = ExtResource("2_bxs8o")
+region = Rect2(1, 18, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_77cg4"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_e85m0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0wht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmc6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c4e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jff6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km6vm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2surq")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7e2v"]
+size = Vector2(14, 1)
+
+[node name="HittableBlock" instance=ExtResource("1_1r7ol")]
+script = ExtResource("2_l3jx0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_77cg4")
+autoplay = "default"
+frame_progress = 0.235055
+
+[node name="HittableComponent" parent="." index="2" instance=ExtResource("3_cdeyy")]
+
+[node name="Area2D" type="Area2D" parent="HittableComponent" index="0"]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HittableComponent/Area2D" index="0"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_q7e2v")
+debug_color = Color(0.7528, 0.195255, 1, 0.42)
+
+[node name="BounceTimer" type="Timer" parent="HittableComponent" index="1"]
+wait_time = 0.23
+one_shot = true
+
+[connection signal="body_entered" from="HittableComponent/Area2D" to="HittableComponent" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="HittableComponent/BounceTimer" to="HittableComponent" method="_on_bounce_timer_timeout"]

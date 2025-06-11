@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://b36iq0c67mplm"]
+
+[ext_resource type="Script" uid="uid://cngvgpcacq67q" path="res://Scripts/Enemies/red_zomb_enemy.gd" id="1_hy5bp"]
+[ext_resource type="Texture2D" uid="uid://cyw1jveku0npg" path="res://Graphics/Enemy/RedZomb.png" id="2_bjwx3"]
+[ext_resource type="PackedScene" uid="uid://dirwp38w8mv8g" path="res://Scenes/Components/run_component.tscn" id="3_c7uuu"]
+[ext_resource type="PackedScene" uid="uid://7r71nhjr87r" path="res://Scenes/Components/on_jump_component.tscn" id="4_jxtmt"]
+[ext_resource type="PackedScene" uid="uid://bg8806v1rj0h7" path="res://Scenes/Components/on_ground_pound_component.tscn" id="5_bf3yc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol70d"]
+atlas = ExtResource("2_bjwx3")
+region = Rect2(1, 26, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3edc"]
+atlas = ExtResource("2_bjwx3")
+region = Rect2(1, 1, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1nu6"]
+atlas = ExtResource("2_bjwx3")
+region = Rect2(18, 1, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w2a3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol70d")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3edc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1nu6")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qk4"]
+size = Vector2(6, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2wva"]
+size = Vector2(6, 14)
+
+[node name="RedZombEnemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_hy5bp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w2a3x")
+animation = &"Run"
+autoplay = "Run"
+frame_progress = 0.170874
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_j8qk4")
+
+[node name="RunComponent" parent="." instance=ExtResource("3_c7uuu")]
+walkspeed = 125.0
+
+[node name="OnJumpComponent" parent="." instance=ExtResource("4_jxtmt")]
+
+[node name="InteractionHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHitbox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_y2wva")
+debug_color = Color(0.698524, 0.277996, 1, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(3.2, 2.2)
+
+[node name="ExplosionTime" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="OnGroundPoundComponent" parent="." instance=ExtResource("5_bf3yc")]
+
+[connection signal="jumped_on" from="OnJumpComponent" to="." method="_on_on_jump_component_jumped_on"]
+[connection signal="body_entered" from="InteractionHitbox" to="." method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnJumpComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="body_entered" from="InteractionHitbox" to="OnGroundPoundComponent" method="_on_interaction_hitbox_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="ground_pound_on" from="OnGroundPoundComponent" to="." method="_on_on_ground_pound_component_ground_pound_on"]

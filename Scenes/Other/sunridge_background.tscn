@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://x4jdxf30mwy7"]
+
+[ext_resource type="Texture2D" uid="uid://cgpevpq0rnwdr" path="res://Graphics/Backdrops/SunridgeBG1.png" id="1_3l2wi"]
+[ext_resource type="Script" uid="uid://ehw4w1th1u3v" path="res://Scripts/Other/sunridge_background.gd" id="1_i8avy"]
+[ext_resource type="Texture2D" uid="uid://dy5orqc8rirxk" path="res://Graphics/Backdrops/SunridgeBG2.png" id="2_npg54"]
+[ext_resource type="Texture2D" uid="uid://cvepaqw4atqus" path="res://Graphics/Backdrops/SunridgeBG4.png" id="3_fbsw0"]
+[ext_resource type="Texture2D" uid="uid://hk8mhrrs088u" path="res://Graphics/Backdrops/SunridgeBG3.png" id="3_mo5rs"]
+
+[node name="SunridgeBackground" type="ParallaxBackground"]
+script = ExtResource("1_i8avy")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 0)
+motion_offset = Vector2(0, -280)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_3l2wi")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0.4)
+motion_offset = Vector2(0, -128)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer4"]
+texture = ExtResource("3_fbsw0")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.4, 0.5)
+motion_offset = Vector2(0, -32)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+texture = ExtResource("2_npg54")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 0.5)
+motion_offset = Vector2(0, 182)
+motion_mirroring = Vector2(456, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3"]
+texture = ExtResource("3_mo5rs")
+centered = false

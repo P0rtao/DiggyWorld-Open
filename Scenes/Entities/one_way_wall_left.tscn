@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bav0sakfwhx78"]
+
+[ext_resource type="Texture2D" uid="uid://c3h258m6oe1b" path="res://Graphics/Tileset/OneWayTiles.png" id="1_r6syx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehboi"]
+atlas = ExtResource("1_r6syx")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wuqp"]
+atlas = ExtResource("1_r6syx")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d71uk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehboi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wuqp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kk7ig"]
+size = Vector2(16, 16)
+
+[node name="OneWayWallLeft" type="StaticBody2D"]
+collision_layer = 158
+collision_mask = 158
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d71uk")
+autoplay = "default"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.37114e-08, 0)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_kk7ig")
+one_way_collision = true
+one_way_collision_margin = 5.0

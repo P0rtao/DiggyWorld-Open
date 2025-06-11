@@ -1,0 +1,705 @@
+[gd_scene load_steps=31 format=3 uid="uid://jvwnspb2wb8y"]
+
+[ext_resource type="Script" uid="uid://snhlryalfkks" path="res://Scripts/BossHandlers/haunted_boss_handler.gd" id="1_myjiy"]
+[ext_resource type="Texture2D" uid="uid://cf2srpju2m4mx" path="res://Graphics/NPCs/HauntedCutsceneNPC.png" id="2_nslwx"]
+[ext_resource type="PackedScene" uid="uid://bunheroi1f78t" path="res://Scenes/BossFight/spike_boss.tscn" id="3_vr3vm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg6qt"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(18, 26, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecago"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(35, 26, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qpkf"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(1, 26, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8pes"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(52, 26, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cc44"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(69, 26, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vpf7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg6qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecago")
+}],
+"loop": true,
+"name": &"Crouch",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qpkf")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8pes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cc44")
+}],
+"loop": true,
+"name": &"No",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvq6s"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(1, 1, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvty6"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(86, 1, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt3is"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(52, 1, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26e2y"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(69, 1, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u3ii"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(18, 1, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f005f"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(1, 1, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py60e"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(35, 1, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xx5ki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvq6s")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvty6")
+}],
+"loop": true,
+"name": &"LookBack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt3is")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26e2y")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_1u3ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f005f")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_py60e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f005f")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 4.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_653q3"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(1, 51, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mocoi"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(52, 51, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vpf7"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(52, 51, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx5ki"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(69, 51, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjx0y"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(18, 51, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e8k7"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(1, 51, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjevn"]
+atlas = ExtResource("2_nslwx")
+region = Rect2(35, 51, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_to1mx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_653q3")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mocoi")
+}],
+"loop": true,
+"name": &"Point",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vpf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx5ki")
+}],
+"loop": true,
+"name": &"PointTalk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_sjx0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e8k7")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_yjevn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e8k7")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 4.0
+}]
+
+[sub_resource type="Animation" id="Animation_mocoi"]
+resource_name = "HauntedBossCutscene"
+length = 22.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Person1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1245, 180)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Person1:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.5, 7.45, 8.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [&"Crouch", &"Idle", &"No", &"Idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Person2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1463, 180), Vector2(1463, 180), Vector2(1263, 180)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Person2:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 5, 6.3, 7.25, 9, 13.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"Idle", &"Walk", &"Idle", &"Talk", &"Idle", &"LookBack", &"Idle"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Person3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333, 6.3, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1484, 180), Vector2(1484, 180), Vector2(1283, 180)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Person3:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333, 6.3, 10, 11.65, 12.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"Idle", &"Walk", &"Idle", &"PointTalk", &"Point"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Person1:flip_h")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 5.9, 14.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(15.5, 17.25, 17.254, 17.261, 17.3, 17.35, 21.95, 22),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [false, Vector2(1160, 0)],
+"method": &"move_camera"
+}, {
+"args": [Vector2(1245, 180)],
+"method": &"spawn_particle"
+}, {
+"args": [Vector2(1283, 178)],
+"method": &"spawn_particle"
+}, {
+"args": [Vector2(1263, 182)],
+"method": &"spawn_particle"
+}, {
+"args": [],
+"method": &"stun_player"
+}, {
+"args": [],
+"method": &"shake_cam_cutscene"
+}, {
+"args": [],
+"method": &"unstun_player"
+}, {
+"args": [],
+"method": &"start_boss"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpikeBoss/LeftHand:animation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(17, 18),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Fist", &"Open"]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SpikeBoss/RightHand:animation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(17, 18),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Fist", &"Open"]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SpikeBoss/RightHand:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(17, 17.25, 17.5, 18),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-15, 1), Vector2(-15, 294), Vector2(-15, 294), Vector2(-33, 3)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SpikeBoss/LeftHand:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(17, 17.25, 17.5, 18),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(15, 1), Vector2(15, 294), Vector2(15, 294), Vector2(33, 3)]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Person1")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(17.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Person2")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(17.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Person3")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(17.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("SpikeBoss:position")
+tracks/15/interp = 2
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(18, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1258, -117), Vector2(1258, 132)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("SpikeBoss/Face:animation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(18, 20.5, 21.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"Smile", &"Laugh", &"Smile"]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("SpikeBoss/Face:offset")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(20.5, 20.55, 20.6, 20.65, 20.7, 20.75, 20.8, 20.85, 20.9, 20.95, 21, 21.05, 21.1, 21.15, 21.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dg6qt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Person1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1245, 180)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Person1:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Person2:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Person2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1463, 180)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Person3:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Person3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1484, 180)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Person1:flip_h")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpikeBoss/LeftHand:animation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Fist"]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpikeBoss/RightHand:animation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Fist"]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SpikeBoss/RightHand:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-15, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SpikeBoss/LeftHand:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SpikeBoss:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1285, -167)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("SpikeBoss/Face:animation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Laugh"]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("SpikeBoss/Face:offset")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ecago"]
+_data = {
+&"HauntedBossCutscene": SubResource("Animation_mocoi"),
+&"RESET": SubResource("Animation_dg6qt")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mocoi"]
+size = Vector2(30, 345)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qpkf"]
+size = Vector2(58.5, 359)
+
+[node name="HauntedBossArena" type="Node2D"]
+script = ExtResource("1_myjiy")
+
+[node name="Person1" type="AnimatedSprite2D" parent="."]
+position = Vector2(1245, 180)
+sprite_frames = SubResource("SpriteFrames_7vpf7")
+animation = &"Idle"
+autoplay = "Crouch"
+
+[node name="Person2" type="AnimatedSprite2D" parent="."]
+position = Vector2(1463, 180)
+sprite_frames = SubResource("SpriteFrames_xx5ki")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Person3" type="AnimatedSprite2D" parent="."]
+position = Vector2(1484, 180)
+sprite_frames = SubResource("SpriteFrames_to1mx")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CutsceneAnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ecago")
+}
+
+[node name="CutsceneStartTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(1043, 19.5)
+shape = SubResource("RectangleShape2D_mocoi")
+debug_color = Color(0.647476, 0.331123, 1, 0.42)
+
+[node name="SpikeBoss" parent="." instance=ExtResource("3_vr3vm")]
+position = Vector2(1285, -167)
+
+[node name="LimitLeft" type="StaticBody2D" parent="." groups=["Barrier"]]
+collision_layer = 142
+collision_mask = 142
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitLeft"]
+position = Vector2(951.75, 12.5)
+shape = SubResource("RectangleShape2D_0qpkf")
+disabled = true
+
+[node name="LimitRight" type="StaticBody2D" parent="." groups=["Barrier"]]
+collision_layer = 142
+collision_mask = 142
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitRight"]
+position = Vector2(1514.5, 12.5)
+shape = SubResource("RectangleShape2D_0qpkf")
+
+[node name="BossEndTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="CutsceneStartTimer" to="." method="_on_cutscene_start_timer_timeout"]
+[connection signal="body_entered" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_body_entered"]
+[connection signal="defeated" from="SpikeBoss" to="." method="_on_spike_boss_defeated"]
+[connection signal="timeout" from="BossEndTimer" to="." method="_on_boss_end_timer_timeout"]

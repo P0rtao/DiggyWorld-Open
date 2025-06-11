@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccfg3xel33ijc"]
+
+[ext_resource type="Script" uid="uid://v55vxmpqfal6" path="res://Scripts/Other/camera.gd" id="1_cy2wv"]
+
+[sub_resource type="Animation" id="Animation_fu87a"]
+resource_name = "CamShake"
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 0), Vector2(0, -5), Vector2(0, 0), Vector2(0, 5), Vector2(0, 0), Vector2(0, -5), Vector2(0, 0), Vector2(0, 5), Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dfykx"]
+resource_name = "CamShakeRepeat"
+length = 0.48
+loop_mode = 1
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44, 0.48),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mun28"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j0kth"]
+_data = {
+&"CamShake": SubResource("Animation_fu87a"),
+&"CamShakeRepeat": SubResource("Animation_dfykx"),
+&"RESET": SubResource("Animation_mun28")
+}
+
+[node name="Camera" type="Node2D" groups=["Camera"]]
+script = ExtResource("1_cy2wv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, 1)
+zoom = Vector2(3, 3)
+position_smoothing_speed = 10.0
+
+[node name="SmoothTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j0kth")
+}
+
+[connection signal="timeout" from="SmoothTimer" to="." method="_on_smooth_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c06h7nmwxk8xn"]
+
+[ext_resource type="Script" uid="uid://b0lxbecjy0n6o" path="res://Scripts/Enemies/walk_component.gd" id="1_d2knl"]
+
+[node name="WalkComponent" type="Node"]
+script = ExtResource("1_d2knl")
+walkspeed = 15.0
+
+[node name="WallCollideTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

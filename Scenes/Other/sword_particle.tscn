@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://djwnr2xo2x0p1"]
+
+[ext_resource type="Texture2D" uid="uid://c4bewacvw5d1c" path="res://Graphics/Particles/SwordSpin.png" id="1_4wxwg"]
+[ext_resource type="Script" uid="uid://bjls1w138r2g7" path="res://Scripts/Other/helmet.gd" id="2_kqw45"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2jeg"]
+atlas = ExtResource("1_4wxwg")
+region = Rect2(1, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shq5i"]
+atlas = ExtResource("1_4wxwg")
+region = Rect2(16, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4aeg"]
+atlas = ExtResource("1_4wxwg")
+region = Rect2(31, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6ev2"]
+atlas = ExtResource("1_4wxwg")
+region = Rect2(46, 1, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m3qjq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2jeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shq5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4aeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6ev2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="SwordParticle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_m3qjq")
+autoplay = "default"
+frame = 1
+frame_progress = 0.821355
+script = ExtResource("2_kqw45")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2.68221e-07, -2.98023e-07)
+scale = Vector2(0.7, 0.7)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

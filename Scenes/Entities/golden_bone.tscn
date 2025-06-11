@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://cig6k82hw3lh2"]
+
+[ext_resource type="Script" uid="uid://w1ncnl1s4rfi" path="res://Scripts/Collectables/golden_bone.gd" id="1_mutch"]
+[ext_resource type="Texture2D" uid="uid://b4ttexia13ss8" path="res://Graphics/Items/GoldenBone.png" id="1_ri1of"]
+[ext_resource type="Texture2D" uid="uid://bukne0j086q61" path="res://Graphics/Particles/LightTexture.png" id="3_ptbwe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4jo8"]
+atlas = ExtResource("1_ri1of")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xry8l"]
+atlas = ExtResource("1_ri1of")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpabh"]
+atlas = ExtResource("1_ri1of")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5aiob"]
+atlas = ExtResource("1_ri1of")
+region = Rect2(52, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7jou"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_y4jo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xry8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpabh")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_5aiob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpabh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xry8l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mlwj2"]
+radius = 5.0
+
+[node name="GoldenBone" type="Area2D"]
+z_index = 1
+script = ExtResource("1_mutch")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q7jou")
+autoplay = "default"
+frame_progress = 0.983707
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mlwj2")
+
+[node name="ChangeSceneTimer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2, 2)
+color = Color(0.946105, 0.941396, 0.487138, 1)
+energy = 0.5
+range_layer_min = -100
+texture = ExtResource("3_ptbwe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="ChangeSceneTimer" to="." method="_on_change_scene_timer_timeout"]

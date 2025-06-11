@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://2p37tamsctxl"]
+
+[ext_resource type="PackedScene" uid="uid://tktxqdly08iw" path="res://Scenes/Entities/carryable_object.tscn" id="1_opfcy"]
+[ext_resource type="Texture2D" uid="uid://bdsetmb5yiixw" path="res://Graphics/Enemy/SkeletonBoss.png" id="2_ndpk7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkukl"]
+atlas = ExtResource("2_ndpk7")
+region = Rect2(76, 124, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6x8l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkukl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SkeletonBossHead" instance=ExtResource("1_opfcy")]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_o6x8l")
+autoplay = "default"

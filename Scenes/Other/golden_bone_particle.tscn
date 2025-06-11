@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://do6qnmfvjwddn"]
+
+[ext_resource type="Texture2D" uid="uid://kyd7vjv5bjjw" path="res://Graphics/Particles/GoldenBoneParticle.png" id="1_ndocw"]
+[ext_resource type="Script" uid="uid://cwrdax4ah68e1" path="res://Scripts/Other/golden_bone_particle.gd" id="2_d4hl1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iabkj"]
+atlas = ExtResource("1_ndocw")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lptc"]
+atlas = ExtResource("1_ndocw")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qrpg"]
+atlas = ExtResource("1_ndocw")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikq6l"]
+atlas = ExtResource("1_ndocw")
+region = Rect2(52, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qli02"]
+atlas = ExtResource("1_ndocw")
+region = Rect2(69, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nf6md"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iabkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lptc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qrpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikq6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qli02")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="GoldenBoneParticle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_nf6md")
+autoplay = "default"
+frame_progress = 0.112881
+script = ExtResource("2_d4hl1")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

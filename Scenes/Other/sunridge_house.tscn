@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dplc0t4u6prhc"]
+
+[ext_resource type="Texture2D" uid="uid://bc5mvj3i1o6e8" path="res://Graphics/Decorations/SunridgeHouse.png" id="1_bn8b8"]
+
+[node name="SunridgeHouse" type="Sprite2D"]
+position = Vector2(0, -39)
+scale = Vector2(2, 2)
+texture = ExtResource("1_bn8b8")

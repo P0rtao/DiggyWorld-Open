@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4fghmw03b1pl"]
+
+[ext_resource type="Script" uid="uid://dstpiit5esuay" path="res://Scripts/Other/swinging_axe.gd" id="1_5s612"]
+[ext_resource type="Texture2D" uid="uid://w8x3jyadr23v" path="res://Graphics/Interactables/AxeTrap.png" id="2_l2w3i"]
+
+[sub_resource type="Animation" id="Animation_gacno"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.13446]
+}
+
+[sub_resource type="Animation" id="Animation_dhkg6"]
+resource_name = "Swing"
+length = 2.0
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.13446, -1.13446, 1.13446]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4plgu"]
+_data = {
+&"RESET": SubResource("Animation_gacno"),
+&"Swing": SubResource("Animation_dhkg6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ssn1"]
+size = Vector2(18, 12)
+
+[node name="SwingingAxe" type="Node2D"]
+z_index = -3
+rotation = 1.13446
+script = ExtResource("1_5s612")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4plgu")
+}
+autoplay = "Swing"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 30)
+texture = ExtResource("2_l2w3i")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_6ssn1")
+debug_color = Color(0.768778, 0.159833, 1, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
