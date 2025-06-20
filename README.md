@@ -19,5 +19,6 @@ Download Godot (Version 4.4 was used, later versions can break things)
 
 # Tip
 
-When in the editor, select the debug tab on the top left and check "Visible Collision Shapes" for rendering hitboxes
+When in the editor, select the debug tab on the top left and check "Visible Collision Shapes" for rendering hitboxes.
+
 Pressing F5 will run the project, while F6 will run the currently selected scene.
